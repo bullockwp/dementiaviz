@@ -10,7 +10,7 @@
 
 ----------------------------
 
-### Introduction
+## Introduction
 
 The statements above present an eminent challenge we are facing in this century. Despite its potential disastrous impacts on the society, little public attention and awareness have been placed in the disease.  
 
@@ -21,7 +21,7 @@ With the population structure shifting to become more aged, the prevalence of de
 Currently, there are numerous global efforts led by World Health Organization (WHO)[<sup>4</sup>](#4) and other collaborative forces to promote care for people with dementia, risk reduction and research for cures. Many HICs have national plans to tackle dementia in place, while other countries are developing their plans. Immense efforts are required to curb the epidemic of the 21<sup>st</sup> century. 
 
 
-### Motivation
+## Motivation
 
 We will endeavour to find evidence and quantitative data to support the two statements mentioned in the beginning, which includes the following claims along with their data sources:
 
@@ -39,21 +39,21 @@ Then, we will tell a story of the prevalence of dementia supported by interactiv
 As people usually have strong emotion to place they have connection to (Boomsma, 2017?), it is our intent to tell stories of some specific countries, e.g., Denmark (HIC), the UK (HIC), and Thailand (Upper middle income country, UMIC), on top of the global picture.
 
 
-### Proposed visualisation
+## Proposed visualisation
 
 The audience will be the general public, who are assumed to no prior knowledge about dementia or medical terms.  
 
 The narrative model of visualisation will be hybrid, consisting of an interactive slideshow in a form of scroller, and a possibility to drill down the story with inital global picture that allows user the reader to select a specific country.  
 
 
-The visualisation will start with a global choropleth map showing the number of people with dementia of each country from now to 2050. It should transition over years automatically with a possibility for the use to move a slider to select particular year.
+The visualisation will start with a global choropleth map showing the absolute number, the proportion, and the % change of people with dementia of each country from now to 2050. It should transition over years automatically with a possibility for the reader to move a slider to select a particular year.
 
 ![](img/world-prevalence.png)
 
 
 The reader can choose to read a story of either the world or a specific country. Then, the following visualisation Document will be Driven with appropiate Data powered by Data-Driven Documents (D3.js).
 
-The story is then based on the two statments mentioned earlier. We will have a couple of sentences explaining each visulation on its side. We are evaluating (advice appreciated) two libraries, [a library built specifically for d3.js scroller](https://github.com/vlandham/scroll_demo) and [a more popular general purpose one](http://imakewebthings.com/waypoints/).
+The story is then based on the two statments mentioned earlier. In a scroller format, we will have a series of visualisations and a couple of sentences explaining each visulation on its side, similar to these examples, [1](http://vallandingham.me/scroll_demo/) and [2](https://www.bloomberg.com/graphics/2015-measles-outbreaks/). We are evaluating (advice appreciated) two libraries, [a library built specifically for d3.js scroller](https://github.com/vlandham/scroll_demo) and [a more popular general purpose one](http://imakewebthings.com/waypoints/).
 
 - the world’s population is ageing: population pyramids with transition effect between the current year and future years.
 
