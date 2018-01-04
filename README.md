@@ -41,7 +41,7 @@ As people usually have strong emotion to place they have connection to (Boomsma,
 
 ## Proposed visualisation
 
-The audience will be the general public, who are assumed to no prior knowledge about dementia or medical terms.  
+The audience will be the general public, who are assumed to have no prior knowledge about dementia or medical terms.  
 
 The narrative model of visualisation will be hybrid, consisting of an interactive slideshow in a form of scroller, and a possibility to drill down the story with inital global picture that allows user the reader to select a specific country.  
 
@@ -51,7 +51,7 @@ The visualisation will start with a global choropleth map showing the absolute n
 ![](/img/world-prevalence.png)
 
 
-The reader can choose to read a story of either the world or a specific country. Then, the following visualisation Document will be Driven with appropiate Data powered by Data-Driven Documents (D3.js).
+The reader can choose to read a story of either the world or a specific country. Then, the following visualisation Document will be Driven with appropiate Data powered by Data-Driven Documents JavaScipt library (D3.js).
 
 The story is then based on the two statments mentioned earlier. In a scroller format, we will have a series of visualisations and a couple of sentences explaining each visulation on its side, similar to these examples, [1](http://vallandingham.me/scroll_demo/) and [2](https://www.bloomberg.com/graphics/2015-measles-outbreaks/). We are evaluating (advice appreciated) two libraries, [a library built specifically for d3.js scroller](https://github.com/vlandham/scroll_demo) and [a more popular general purpose one](http://imakewebthings.com/waypoints/).
 
@@ -73,7 +73,6 @@ Then, it transitions to this.
 - the world will shortly be confronted with the *epidemic* of the 21<sup>st</sup> century: plot comparing the prevalence of dementia with number of deaths of selected epidemics
 
 ![](/img/epidemic.png)
-
 
 
 ----------------------------
