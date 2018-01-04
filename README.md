@@ -55,9 +55,10 @@ The reader can choose to read a story of either the world or a specific country.
 
 The story is then based on the two statments mentioned earlier. In a scroller format, we will have a series of visualisations and a couple of sentences explaining each visulation on its side, similar to these examples, [1](http://vallandingham.me/scroll_demo/) and [2](https://www.bloomberg.com/graphics/2015-measles-outbreaks/). We are evaluating (advice appreciated) two libraries, [a library built specifically for d3.js scroller](https://github.com/vlandham/scroll_demo) and [a more popular general purpose one](http://imakewebthings.com/waypoints/).
 
-- the world’s population is ageing: population pyramids with transition effect between the current year and future years.
+- the world’s population is ageing: population pyramids with a transition effect between the current year and future years
 
-![](img/poppyramid-current.png)  
+![](img/poppyramid-current.png) 
+Then, it transitions to this.  
 ![](img/poppyramid-2050.png)
 
 - people living longer and healthier lives: line plots of life expectancy, number of death from cancers, number of death from heart diseases over years
@@ -73,7 +74,6 @@ The story is then based on the two statments mentioned earlier. In a scroller fo
 - the world will shortly be confronted with the *epidemic* of the 21<sup>st</sup> century: plot comparing the prevalence of dementia with number of deaths of selected epidemics
 
 ![](img/epidemic.png)
-
 
 
 
