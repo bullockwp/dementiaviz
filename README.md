@@ -48,7 +48,7 @@ The narrative model of visualisation will be hybrid, consisting of an interactiv
 
 The visualisation will start with a global choropleth map showing the absolute number, the proportion, and the % change of people with dementia of each country from now to 2050. It should transition over years automatically with a possibility for the reader to move a slider to select a particular year.
 
-![](img/world-prevalence.png)
+![](/img/world-prevalence.png)
 
 
 The reader can choose to read a story of either the world or a specific country. Then, the following visualisation Document will be Driven with appropiate Data powered by Data-Driven Documents (D3.js).
@@ -57,23 +57,22 @@ The story is then based on the two statments mentioned earlier. In a scroller fo
 
 - the world’s population is ageing: population pyramids with a transition effect between the current year and future years
 
-![](img/poppyramid-current.png) 
+![](/img/poppyramid-current.png) 
 Then, it transitions to this.  
-![](img/poppyramid-2050.png)
+![](/img/poppyramid-2050.png)
 
 - people living longer and healthier lives: line plots of life expectancy, number of death from cancers, number of death from heart diseases over years
 
-![](img/life-expectancy.png)  
-![](img/number-death.png)
-
+![](/img/life-expectancy.png)  
+![](/img/number-death.png)
 
 - an increase in the number of people with non-communicable diseases, including dementia: line plot of number of people with dementia over years 
 
-![](img/number-dementia.png)
+![](/img/number-dementia.png)
 
 - the world will shortly be confronted with the *epidemic* of the 21<sup>st</sup> century: plot comparing the prevalence of dementia with number of deaths of selected epidemics
 
-![](img/epidemic.png)
+![](/img/epidemic.png)
 
 
 
