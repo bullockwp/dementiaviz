@@ -12,7 +12,7 @@
 
 ## Introduction
 
-The statements above present an eminent challenge we are facing in this century. Despite its potential disastrous impacts on the society, little public attention and awareness have been placed in the disease.  
+The statements above present an inevitable challenge we are facing in this century. Despite its potential disastrous impacts on the society, little public attention and awareness have been placed in the disease.  
 
 One of the reasons for the lack of public awareness is that the loss of memory is usually perceived as a normal process of ageing. In fact, it is an abnormality and could be a sign of Dementia, which leads to a progressive decline of cognitive functions. Unlike patients with cancers or heart diseases, people with dementia endure long-lasting symptoms and become heavily dependent on caregivers. As of now, dementia can't be prevented or cured, but the risks of developing it can be reduced and early intervention prepares the patients and those surrounding them for the progression of the disease.  
 
