@@ -1,37 +1,27 @@
-## Welcome to GitHub Pages
+> The world’s population is ageing. Improvements in health care in the past century have contributed to people living longer and healthier lives. However, this has also resulted in an increase in the number of people with non-communicable diseases, including dementia.
 
-You can use the [editor on GitHub](https://github.com/na399/dementiaviz/edit/gh-pages/README.md) to maintain and preview the content for your website in Markdown files.
+*Dr Margaret Chan, Former Director-General of World Health Organization [<sup>1</sup>](#1)*
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+> Unless we find ways to prevent or cure Alzheimer’s and other severe dementing diseases, the world will shortly be confronted with … the epidemic of the 21st century.
 
-### Markdown
+*Dr Robert Butler, gerontologist, psychiatrist, and Pulitzer Prize winner [<sup>2</sup>](#2)*
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+----------------------------
 
-```markdown
-Syntax highlighted code block
+### Introduction
 
-# Header 1
-## Header 2
-### Header 3
+*to be written*
 
-- Bulleted
-- List
+### Motivation
 
-1. Numbered
-2. List
+*to be written*
 
-**Bold** and _Italic_ and `Code` text
+### Proposed visualisation
 
-[Link](url) and ![Image](src)
-```
+*to be written*
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+----------------------------
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/na399/dementiaviz/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+### Ref:
+1. <span id="1"></span>[Dementia: a public health priority](http://apps.who.int/iris/bitstream/10665/75263/1/9789241564458_eng.pdf?ua=1)
+2. <span id="2"></span>[The Longevity Revolution: The Benefits and Challenges of Living a Long Life](https://www.goodreads.com/book/show/2972494-the-longevity-revolution)
