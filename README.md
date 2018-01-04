@@ -18,8 +18,6 @@ One of the reasons for the lack of public awareness is that the loss of memory i
 
 With the population structure shifting to become more aged, the prevalence of dementia will continue to rise in the short future, especially in low and middle income countries (LMICs). In 2015, the estimated number of people with dementia in LMICs was 27.8 millions, and it is projected to reach 89.3 millions in 2050, which is approximate to an increase of 227 % (a more than three-fold increase). While in high income countries (HICs), there were about 19.5 millions in 2015 with a forecast of 116 % increase to 42.2 millions in 2050.[<sup>3</sup>](#3)  
 
-In LMICs, people have less access to health care services, including diagnosis of dementia, compared to those living in HICs. The diagnosis rates of dementia are commonly less than 10-20 % of the total pool of people with dementia in LMICs, while the diagnosis rates in HICs are a half.[<sup>3</sup>](#3)  
-
 Currently, there are numerous global efforts led by World Health Organization (WHO)[<sup>4</sup>](#4) and other collaborative forces to promote care for people with dementia, risk reduction and research for cures. Many HICs have national plans to tackle dementia in place, while other countries are developing their plans. Immense efforts are required to curb the epidemic of the 21<sup>st</sup> century. 
 
 
@@ -27,10 +25,14 @@ Currently, there are numerous global efforts led by World Health Organization (W
 
 We will endeavour to find evidence and quantitative data to support the two statements mentioned in the beginning, which includes the following claims along with their data sources:
 
-- the world’s population is ageing *Data:* [UN World Population Prospects](https://esa.un.org/unpd/wpp/Download/Standard/Population/)
-- people living longer and healthier lives (better cures for cancers and heart diseases) *Data:* [UN World Population Prospects](https://esa.un.org/unpd/wpp/Download/Standard/Population/), [Global Health Data Exchange](http://ghdx.healthdata.org/gbd-results-tool), [Global Burden of Disease](https://vizhub.healthdata.org/gbd-compare/)
-- an increase in the number of people with non-communicable diseases, including dementia *Data:* [World Alzheimer Report 2015](https://www.alz.co.uk/research/WorldAlzheimerReport2015.pdf), which is based on [Prince *et al*., 2013](https://doi.org/10.1016/j.jalz.2012.11.007) (the most popular latest systematic review and metaanalysis on this topic)
-- the world will shortly be confronted with the *epidemic* of the 21<sup>st</sup> century *Data:* [List of Epidemics](https://en.wikipedia.org/wiki/List_of_epidemics)
+- the world’s population is ageing  
+*Data:* [UN World Population Prospects](https://esa.un.org/unpd/wpp/Download/Standard/Population/)
+- people living longer and healthier lives (better cures for cancers and heart diseases)  
+*Data:* [UN World Population Prospects](https://esa.un.org/unpd/wpp/Download/Standard/Population/), [Global Health Data Exchange](http://ghdx.healthdata.org/gbd-results-tool), [Global Burden of Disease](https://vizhub.healthdata.org/gbd-compare/)
+- an increase in the number of people with non-communicable diseases, including dementia  
+*Data:* [World Alzheimer Report 2015](https://www.alz.co.uk/research/WorldAlzheimerReport2015.pdf), which is based on [Prince *et al*., 2013](https://doi.org/10.1016/j.jalz.2012.11.007) (the most popular latest systematic review and metaanalysis on this topic)
+- the world will shortly be confronted with the *epidemic* of the 21<sup>st</sup> century  
+*Data:* [List of Epidemics](https://en.wikipedia.org/wiki/List_of_epidemics)
 
 Then, we will tell a story of the prevalence of dementia supported by interactive data visualisation. The objective would be to raise the public awareness of the disease by using engaging visual medium, which also allows them to further explore the data interactively. We would like to have visualisations with high impact, yet simple to glance at.  
 
