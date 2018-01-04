@@ -43,7 +43,7 @@ As people usually have strong emotion to place they have connection to (Boomsma,
 
 The audience will be the general public, who are assumed to have no prior knowledge about dementia or medical terms.  
 
-The narrative model of visualisation will be hybrid, consisting of an interactive slideshow in a form of scroller, and a possibility to drill down the story with inital global picture that allows user the reader to select a specific country.  
+The narrative model of visualisation will be hybrid, consisting of an interactive slideshow in a form of scroller, and a possibility to drill down the story with inital global picture that allows the reader to select a specific country.  
 
 
 The visualisation will start with a global choropleth map showing the absolute number, the proportion, and the % change of people with dementia of each country from now to 2050. It should transition over years automatically with a possibility for the reader to move a slider to select a particular year.
