@@ -165,6 +165,10 @@
         .attr("transform", "rotate(-90)")
         .text("yTest");
 
+    var firstActive = true;
+    var secondActive = false;
+    var thirdActive = false;
+    var fourthActive = false;
 
     // on click update with new data
     d3.select("body").select("#linePlot1")
@@ -172,36 +176,49 @@
 
             //update by plotting the full data
 
-            firstLine.active = active;
+            if (firstActive) {
 
-            d3.select("path")
-                .style("opacity", 0);
+                d3.select("#firstLine")
+                    .style("opacity", 0);
 
-            svg.append("path")
-                .datum(testDataset)
-                .attr("class", "line")
-                .attr("id", "secondLine")
-                .style("opacity", 1)
-                .attr("d", valueline);
+                svg.append("path")
+                    .datum(testDataset)
+                    .attr("class", "line")
+                    .attr("id", "secondLine")
+                    .style("opacity", 1)
+                    .attr("d", valueline);
 
-            var active   = secondLine.active ? false : true ,
-                newOpacity = active ? 0 : 0.4;
+                firstActive = false;
+                secondActive = true;
 
-            svg.append("path")
-                .datum(testDataset)
-                .attr("class", "line")
-                .attr("id", "secondLine")
-                .style("opacity", newOpacity)
-                .attr("d", valueline);
+            } else if (secondActive) {
 
-            svg.append("path")
-                .datum(secondDataset)
-                .attr("class", "line")
-                .attr("id", "thirdLine")
-                .style("opacity", 1)
-                .style("stroke", "red")
-                .attr("d", valueline);
+                d3.select("#secondLine")
+                    .style("opacity", 0.3);
 
+                secondActive = false;
+                thirdActive = true;
+
+            } else if (thirdActive) {
+
+                svg.append("path")
+                    .datum(secondDataset)
+                    .attr("class", "line")
+                    .attr("id", "thirdLine")
+                    .style("stroke", "red")
+                    .style("opacity", 1)
+                    .attr("d", valueline);
+
+                thirdActive = false;
+                fourthActive = true;
+
+            } else if (fourthActive) {
+
+                d3.select("#secondLine")
+                    .style("opacity", 1);
+
+                fourthActive = false;
+            }
 
         });
 
