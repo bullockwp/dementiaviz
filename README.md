@@ -1,3 +1,31 @@
+# DementiaViz
+
+Visit: https://na399.github.io/dementiaviz/
+
+The foundation of this repository has been adapted from [tvirot's bkkviz](https://github.com/tvirot/bkkviz) under ISC license.
+
+----------------------------
+
+First time
+
+```
+npm install
+```
+
+To run a local server
+
+```
+npm run start
+```
+
+To publish to github pages
+
+```
+npm run gh-pages
+```
+
+----------------------------
+
 >The world’s population is ageing. Improvements in health care in the past century have contributed to people living longer and healthier lives. However, this has also resulted in an increase in the number of people with non-communicable diseases, including dementia.
 
 *Dr Margaret Chan (1947 - )*  
