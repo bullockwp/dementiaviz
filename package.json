@@ -19,9 +19,14 @@
   },
   "homepage": "https://github.com/na399/dementiaviz#readme",
   "devDependencies": {
+    "ajv": "^6.0.1",
     "browser-sync": "^2.16.0",
+    "eslint": "^4.13.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
     "get-pixels": "^3.3.0",
-    "gh-pages": "^0.11.0"
+    "gh-pages": "^0.11.0",
+    "prettier-eslint": "^8.7.4"
   },
   "dependencies": {
     "d3": "^4.12.2",
