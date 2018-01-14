@@ -40,6 +40,7 @@ d3
     const estimates2015 = getEstimates(selectedYears, ageGroups, 2015);
     const estimates2030 = getEstimates(selectedYears, ageGroups, 2030);
 
+    // Draw a bar plot
     const w = 800;
     const h = 500;
     const padding = 40;
@@ -56,35 +57,19 @@ d3
       .paddingInner(0.05);
 
     // Create SVG element
-    let svg = d3
+    const svg = d3
       .select('.plot')
       .append('svg')
       .attr('width', w)
       .attr('height', h);
 
-    svg
-      .selectAll('rect')
-      .data(estimates2015)
-      .enter()
-      .append('rect')
-      .attr('data-age', d => d.age)
-      .attr('x', padding)
-      .attr('y', (d, i) => yScale(i))
-      .attr('width', d => xScale(d.estimate))
-      .attr('height', yScale.bandwidth())
-      .attr('fill', 'purple')
-      .attr('opacity', (d, i) => 0.33 * (i + 1));
+    function drawBarPlot(data, transition = false) {
+      const bars = svg.selectAll('rect').data(data);
 
-    let numClicks = 0;
-
-    d3.selectAll('rect').on('click', () => {
-      console.log('clicked');
-
-      if (numClicks % 2 === 0) {
-        svg
-          .selectAll('rect')
-          .data(estimates2030)
+      if (transition) {
+        bars
           .transition()
+          .attr('data-age', d => d.age)
           .attr('x', padding)
           .attr('y', (d, i) => yScale(i))
           .attr('width', d => xScale(d.estimate))
@@ -92,10 +77,10 @@ d3
           .attr('fill', 'purple')
           .attr('opacity', (d, i) => 0.33 * (i + 1));
       } else {
-        svg
-          .selectAll('rect')
-          .data(estimates2015)
-          .transition()
+        bars
+          .enter()
+          .append('rect')
+          .attr('data-age', d => d.age)
           .attr('x', padding)
           .attr('y', (d, i) => yScale(i))
           .attr('width', d => xScale(d.estimate))
@@ -103,7 +88,99 @@ d3
           .attr('fill', 'purple')
           .attr('opacity', (d, i) => 0.33 * (i + 1));
       }
+    }
 
+    drawBarPlot(estimates2015);
+
+    let numClicks = 0;
+
+    d3.selectAll('rect').on('click', () => {
+      if (numClicks % 2 === 0) {
+        drawBarPlot(estimates2030, (transition = true));
+      } else {
+        drawBarPlot(estimates2015, (transition = true));
+      }
       numClicks += 1;
+    });
+
+    // Draw a pie chart
+    const outerRadius = Math.min(w, h) / 2;
+    const innerRadius = 0;
+    const arc = d3
+      .arc()
+      .innerRadius(innerRadius)
+      .outerRadius(outerRadius - padding);
+
+    const pie = d3
+      .pie()
+      .sort(null)
+      .value(d => d.estimate);
+
+    // Create SVG element
+    const svg2 = d3
+      .select('.plot2')
+      .append('svg')
+      .attr('width', w)
+      .attr('height', h)
+      .append('g')
+      .attr('transform', `translate(${outerRadius},${outerRadius})`);
+
+    function drawPieChart(data) {
+      // Set up groups
+      const arcs = svg2
+        .selectAll('g.arc')
+        .data(pie(data))
+        .enter()
+        .append('path')
+        .attr('class', 'arc')
+        .attr('fill', 'purple')
+        .attr('opacity', (d, i) => 0.33 * (i + 1))
+        .attr('d', arc)
+        .each((d) => {
+          this._current = d;
+        });
+
+      // Labels
+      // arcs
+      //   .append('text')
+      //   .attr('transform', d => `translate(${arc.centroid(d)})`)
+      //   .attr('text-anchor', 'middle')
+      //   .text(d => d.data.age);
+
+      return arcs;
+    }
+
+    const arcs = drawPieChart(estimates2015);
+
+    // This block of code modified from https://bl.ocks.org/mbostock/1346410
+    // Store the displayed angles in _current.
+    // Then, interpolate from _current to the new angles.
+    // During the transition, _current is updated in-place by d3.interpolate.
+    function arcTween(a) {
+      const i = d3.interpolate(this._current, a);
+      this._current = i(0);
+      return t => arc(i(t));
+    }
+
+    let numClicksPie = 0;
+
+    function arcTransition(data) {
+      arcs
+        .data(pie(data))
+        .transition()
+        .duration(1000)
+        .attrTween('d', arcTween);
+    }
+
+    arcTransition(estimates2015);
+
+    d3.selectAll('path.arc').on('click', () => {
+      console.log('clicked');
+      if (numClicksPie % 2 === 0) {
+        arcTransition(estimates2030);
+      } else {
+        arcTransition(estimates2015);
+      }
+      numClicksPie += 1;
     });
   });
