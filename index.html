@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>DementiaViz: Interactive visualisation of Dementia Prevalence</title>
+
+    <link rel="stylesheet" href="dementiaviz.css">
+    <link rel="stylesheet" href="node_modules/leaflet/dist/leaflet.css">
+    <link href="https://fonts.googleapis.com/css?family=Prompt:200,400&subset=thai" rel="stylesheet">
+</head>
+
+<body>
+    <div class="sections">
+        <section class="sections-expanded" id="cover">
+            <h1>DementiaViz</h1>
+            <br>
+            <h2>How does dementia become the epidemic of the 21st century?</h2>
+            <div class="content">
+                <span style="font-size: 40px">Authors</span>
+                <ul>
+                    <li> Natthawut Adulyanukosol </li>
+                    <li> William Bullock </li>
+                </ul>
+            </div>
+        </section>
+        <section class="sections-expanded" id="quote1">
+            <h1>Dr Margaret Chan</h1>
+            <br>
+            <h2>Former Director-General of World Health Organization</h2>
+            <div class="content">
+                <span style="font-size: 30px">"The world’s population is ageing. Improvements in health care in the past century have contributed to people
+                    living longer and healthier lives. However, this has also resulted in an increase in the number of people
+                    with non-communicable diseases, including dementia."</span>
+            </div>
+        </section>
+        <section class="sections-expanded" id="quote2">
+            <h1>Dr Robert Butler</h1>
+            <br>
+            <h2>Gerontologist, psychiatrist, and Pulitzer Prize winner</h2>
+            <div class="content">
+                <span style="font-size: 30px">"Unless we find ways to prevent or cure Alzheimer’s and other severe dementing diseases, the world will shortly be confronted with … the epidemic of the 21st century."</span>
+            </div>
+        </section>
+    </div>
+    <div id="popup">
+    </div>
+
+    <script src="node_modules/d3/d3.min.js"></script>
+    <script src="node_modules/d3-queue/build/d3-queue.min.js"></script>
+    <script src="node_modules/leaflet/dist/leaflet.js"></script>
+    <script src="vendor/tile.stamen.js"></script>
+    <script src="node_modules/topojson/build/topojson.min.js"></script>
+    <script src="vendor/waypoint.min.js"></script>
+    <script src="src/dementiaviz.js"></script>
+
+    <script type="text/javascript">
+        window.heap = window.heap || [], heap.load = function (e, t) {
+            window.heap.appid = e, window.heap.config = t = t || {};
+            var r = t.forceSSL || "https:" === document.location.protocol,
+                a = document.createElement("script");
+            a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") +
+                "//cdn.heapanalytics.com/js/heap-" + e + ".js";
+            var n = document.getElementsByTagName("script")[0];
+            n.parentNode.insertBefore(a, n);
+            for (var o = function (e) {
+                    return function () {
+                        heap.push([e].concat(Array.prototype.slice.call(arguments, 0)))
+                    }
+                }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify",
+                    "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"
+                ], c = 0; c < p.length; c++) heap[p[c]] = o(p[c])
+        };
+        heap.load("1034503799");
+    </script>
+</body>
+
+</html>

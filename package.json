@@ -1,0 +1,33 @@
+{
+  "name": "dementiaviz",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dementiaviz.js",
+  "scripts": {
+    "start": "browser-sync start --server '.' --browser \"Google Chrome\" --files \"./**/*.*\" --port 7000",
+    "gh-pages": "gh-pages -d .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/na399/dementiaviz.git"
+  },
+  "author": "Natthawut Adulyanukosol & William Bullock",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/na399/dementiaviz/issues"
+  },
+  "homepage": "https://github.com/na399/dementiaviz#readme",
+  "devDependencies": {
+    "browser-sync": "^2.16.0",
+    "get-pixels": "^3.3.0",
+    "gh-pages": "^0.11.0"
+  },
+  "dependencies": {
+    "d3": "^4.12.2",
+    "d3-queue": "^3.0.3",
+    "leaflet": "^0.7.7",
+    "lodash": "^4.16.2",
+    "topojson": "^1.6.27"
+  }
+}
