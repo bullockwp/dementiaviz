@@ -13,10 +13,8 @@
 </head>
 
 <body>
-    <div id="plot-area"></div>
-
     <div class="sections">
-        <section class="sections-expanded" id="cover" style="padding-top: 10%">
+        <section class="sections-expanded" id="cover">
             <h1>DementiaViz</h1>
             <br>
             <h2>How does dementia become the epidemic of the 21st century?</h2>
@@ -33,7 +31,7 @@
             <br>
             <h2>Former Director-General of World Health Organization</h2>
             <div class="content">
-                <span style="font-size: 25px">"The world’s population is ageing. Improvements in health care in the past century have contributed to people
+                <span style="font-size: 30px">"The world’s population is ageing. Improvements in health care in the past century have contributed to people
                     living longer and healthier lives. However, this has also resulted in an increase in the number of people
                     with non-communicable diseases, including dementia."</span>
             </div>
@@ -43,57 +41,20 @@
             <br>
             <h2>Gerontologist, psychiatrist, and Pulitzer Prize winner</h2>
             <div class="content">
-                <span style="font-size: 25px">"Unless we find ways to prevent or cure Alzheimer’s and other severe dementing diseases, the world will shortly
-                    be confronted with … the epidemic of the 21st century."</span>
+                <span style="font-size: 30px">"Unless we find ways to prevent or cure Alzheimer’s and other severe dementing diseases, the world will shortly be confronted with … the epidemic of the 21st century."</span>
             </div>
         </section>
-        <section id="population-bar1">
-            <h2>World population estimates</h2>
-            <br>
-            <h1>in 2015</h1>
-            <div class="content">
-                <span style="font-size: 25px">The elderly represents a small proportion.</span>
-            </div>
-        </section>
-        <section id="population-bar2">
-            <br>
-            <h1>in 2030</h1>
-            <div class="content">
-                <span style="font-size: 25px">The number of people with age 65+ will double.</span>
-            </div>
-        </section>
-        <!-- <section id="population-pie1">
-            <h1>Dr Robert Butler</h1>
-            <br>
-            <h2>Gerontologist, psychiatrist, and Pulitzer Prize winner</h2>
-            <div class="content">
-                <span style="font-size: 25px">"Unless we find ways to prevent or cure Alzheimer’s and other severe dementing diseases, the world will shortly
-                    be confronted with … the epidemic of the 21st century."</span>
-            </div>
-        </section>
-        <section id="population-pie2">
-            <h1>Dr Robert Butler</h1>
-            <br>
-            <h2>Gerontologist, psychiatrist, and Pulitzer Prize winner</h2>
-            <div class="content">
-                <span style="font-size: 30px">"Unless we find ways to prevent or cure Alzheimer’s and other severe dementing diseases, the world will shortly
-                    be confronted with … the epidemic of the 21st century."</span>
-            </div>
-        </section> -->
     </div>
     <div id="popup">
     </div>
 
-    <script src="node_modules/d3/build/d3.min.js"></script>
-    <!-- <script src="node_modules/d3-queue/build/d3-queue.min.js"></script>
+    <script src="node_modules/d3/d3.min.js"></script>
+    <script src="node_modules/d3-queue/build/d3-queue.min.js"></script>
     <script src="node_modules/leaflet/dist/leaflet.js"></script>
     <script src="vendor/tile.stamen.js"></script>
-    <script src="node_modules/topojson/build/topojson.min.js"></script> -->
-    <script src="node_modules/lodash/lodash.min.js"></script>
+    <script src="node_modules/topojson/build/topojson.min.js"></script>
     <script src="vendor/waypoint.min.js"></script>
-
     <script src="src/dementiaviz.js"></script>
-    <!-- <script src="src/population.js"></script> -->
 
     <script type="text/javascript">
         window.heap = window.heap || [], heap.load = function (e, t) {

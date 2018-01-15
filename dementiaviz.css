@@ -13,7 +13,7 @@ body {
 section {
   color: black;
   height: 100%;
-  /* padding-top: 10%; */
+  padding-top: 10%;
 }
 
 h1,h2 {
@@ -45,12 +45,11 @@ h2 {
   display: inline-block;
 }
 
-#plot-area {
+#map {
   /* background-color: #fff3d9; */
   height: 100%;
   position: fixed;
-  right: 40px;
-  width: 50%;
+  width: 100%;
 }
 
 .sections {
