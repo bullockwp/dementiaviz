@@ -45,11 +45,12 @@ h2 {
   display: inline-block;
 }
 
-#map {
+#plot-area {
   /* background-color: #fff3d9; */
   height: 100%;
   position: fixed;
-  width: 100%;
+  right: 40px;
+  width: 50%;
 }
 
 .sections {
