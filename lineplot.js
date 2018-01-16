@@ -5,87 +5,65 @@ function getRandomArbitrary(min, max) {
 }
 
 // Malignant Neoplasms
-const MalignantNeoplasms = [
-  { xValue: 2000, yValue: 1 },
-  { xValue: 2005, yValue: 1.02 },
-  { xValue: 2010, yValue: 1.03 },
-  { xValue: 2015, yValue: 1.05 },
-];
+const MalignantNeoplasms1 = [
+  { xValue: 2000, yValue: 1.0 },
+  { xValue: 2005, yValue: 1.02 }
+  ];
 
-// Cardiovascular diseases
-const CardioDisease = [
-  { xValue: 2000, yValue: 1 },
-  { xValue: 2005, yValue: 1 },
-  { xValue: 2010, yValue: 1.02 },
-  { xValue: 2015, yValue: 1.02 },
-];
 
-// Alzheimer disease and other dementias
-const Dementias = [
-  { xValue: 2000, yValue: 1 },
-  { xValue: 2005, yValue: 1.22 },
-  { xValue: 2010, yValue: 1.56 },
-  { xValue: 2015, yValue: 1.97 },
-];
+const MalignantNeoplasms2 =[
+    { xValue: 2010, yValue: 1.03 },
+    { xValue: 2015, yValue: 1.05 }
+    ];
 
-// first half of data
-const testDataset1 = [
-  { xValue: getRandomArbitrary(1, 10), yValue: getRandomArbitrary(1, 10) },
-  { xValue: getRandomArbitrary(11, 20), yValue: getRandomArbitrary(11, 20) },
-  { xValue: getRandomArbitrary(21, 30), yValue: getRandomArbitrary(21, 30) },
-  { xValue: getRandomArbitrary(31, 40), yValue: getRandomArbitrary(31, 40) },
-  { xValue: getRandomArbitrary(41, 50), yValue: getRandomArbitrary(41, 50) },
-];
-
-// second half of data
-const testDataset2 = [
-  { xValue: getRandomArbitrary(51, 60), yValue: getRandomArbitrary(51, 60) },
-  { xValue: getRandomArbitrary(61, 70), yValue: getRandomArbitrary(61, 70) },
-  { xValue: getRandomArbitrary(71, 80), yValue: getRandomArbitrary(71, 80) },
-  { xValue: getRandomArbitrary(81, 100), yValue: getRandomArbitrary(81, 90) },
-  { xValue: getRandomArbitrary(81, 100), yValue: getRandomArbitrary(81, 100) },
-];
-
-// empty array to receive full data
-const testDataset = [];
+const MalignantNeoplasmsAll = [];
 
 // pushes the two halves into the 'complete' array
-Array.prototype.push.apply(testDataset, testDataset1);
-Array.prototype.push.apply(testDataset, testDataset2);
+Array.prototype.push.apply(MalignantNeoplasmsAll, MalignantNeoplasms1);
+Array.prototype.push.apply(MalignantNeoplasmsAll, MalignantNeoplasms2);
 
-// first half of 2nd data
-const secondDataset1 = [
-  { xValue: getRandomArbitrary(1, 10), yValue: getRandomArbitrary(1, 10) },
-  { xValue: getRandomArbitrary(11, 20), yValue: getRandomArbitrary(11, 20) },
-  { xValue: getRandomArbitrary(21, 30), yValue: getRandomArbitrary(21, 30) },
-  { xValue: getRandomArbitrary(31, 40), yValue: getRandomArbitrary(31, 40) },
-  { xValue: getRandomArbitrary(41, 50), yValue: getRandomArbitrary(41, 50) },
-];
+// Cardiovascular diseases
+const CardioDisease1 = [
+  { xValue: 2000, yValue: 1.0 },
+  { xValue: 2005, yValue: 1.0 }
+  ];
 
-// second half of  2nd data
-const secondDataset2 = [
-  { xValue: getRandomArbitrary(51, 60), yValue: getRandomArbitrary(51, 60) },
-  { xValue: getRandomArbitrary(61, 70), yValue: getRandomArbitrary(61, 70) },
-  { xValue: getRandomArbitrary(71, 80), yValue: getRandomArbitrary(71, 80) },
-  { xValue: getRandomArbitrary(81, 100), yValue: getRandomArbitrary(81, 90) },
-  { xValue: getRandomArbitrary(81, 100), yValue: getRandomArbitrary(81, 100) },
-];
+const CardioDisease2 = [
+    { xValue: 2010, yValue: 1.02 },
+    { xValue: 2015, yValue: 1.02 }
+  ];
 
-// empty array to receive full 2nd data
-const secondDataset = [];
+const CardioDiseaseAll = [];
 
-// pushes the two halves into the 2nd 'complete' array
-Array.prototype.push.apply(secondDataset, secondDataset1);
-Array.prototype.push.apply(secondDataset, secondDataset2);
+// pushes the two halves into the 'complete' array
+Array.prototype.push.apply(CardioDiseaseAll, CardioDisease1);
+Array.prototype.push.apply(CardioDiseaseAll, CardioDisease2);
 
-console.log(secondDataset);
-console.log(secondDataset1);
-console.log(secondDataset2);
+// Alzheimer disease and other dementias
+const Dementias1 = [
+  { xValue: 2000, yValue: 1.0 },
+  { xValue: 2005, yValue: 1.22 }
+  ];
+
+const Dementias2 = [
+  { xValue: 2010, yValue: 1.56 },
+  { xValue: 2015, yValue: 1.97 }
+  ];
+
+const DementiasAll = [];
+
+// pushes the two halves into the 'complete' array
+Array.prototype.push.apply(DementiasAll, Dementias1);
+Array.prototype.push.apply(DementiasAll, Dementias2);
+
+console.log(MalignantNeoplasmsAll);
+console.log(CardioDiseaseAll);
+console.log(DementiasAll);
 
 // set viewport size
 const width = 1080;
 const height = 800;
-const padding = 20;
+const padding = 40;
 
 // Initializing variables
 let xScale,
@@ -96,16 +74,16 @@ let xScale,
 xScale = d3
   .scaleLinear()
   .domain([
-    d3.min(testDataset, d => d.xValue),
-    d3.max(testDataset, d => d.xValue),
+    d3.min(DementiasAll, d => d.xValue),
+    d3.max(DementiasAll, d => d.xValue),
   ])
-  .range([padding, width - padding]);
+  .range([padding, width]);
 
 yScale = d3
   .scaleLinear()
   .domain([
-    d3.min(testDataset, d => d.yValue),
-    d3.max(testDataset, d => d.yValue),
+    d3.min(DementiasAll, d => d.yValue),
+    d3.max(DementiasAll, d => d.yValue),
   ])
   .range([height - padding, padding]);
 
@@ -126,10 +104,23 @@ const svg = d3
 // plotting the first half of the data only
 svg
   .append('path')
-  .datum(testDataset1)
+  .datum(CardioDisease1)
   .attr('class', 'line')
-  .attr('id', 'firstLine')
+  .attr('id', 'cardio1')
+  .style('stroke', '#C74C63')
+  .style('opacity', 1)
   .attr('d', valueline);
+
+svg
+    .append('path')
+    .datum(MalignantNeoplasms1)
+    .attr('class', 'line')
+    .attr('id', 'mn1')
+    .style('stroke', '#E4803F')
+    .style('opacity', 1)
+    .attr('d', valueline);
+
+
 
 // Define Axes
 xAxis = d3.axisBottom().scale(xScale);
@@ -156,7 +147,7 @@ svg
   .attr('text-anchor', 'end')
   .attr('x', width - 50)
   .attr('y', height - 10)
-  .text('xTest');
+  .text('Year');
 
 svg
   .append('text')
@@ -165,12 +156,40 @@ svg
   .attr('y', 15)
   .attr('x', -50)
   .attr('transform', 'rotate(-90)')
-  .text('yTest');
+  .text('Rate');
+
+let legend = svg.selectAll(".legend")
+    .data(['Cardiovascular Diseases', 'Malignant Neoplasms', 'Alzheimer\'s Disease and Other Dementias'])
+    .enter().append("g")
+    .attr("class", "legend")
+    .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+const colour = ['#C74C63', '#E4803F', '#AC6FA0'];
+
+// draw legend colored rectangles
+legend.append("rect")
+    .attr("x", width - 15)
+    .attr("y", height - 500)
+    .attr("width", 15)
+    .attr("height", 15)
+    .style("fill", function(d, i) {return colour[i]})
+    .style("stroke", "gray")
+    .style("stroke-width", 0.25);
+
+// draw legend text
+legend.append("text")
+    .attr("x", width - 24)
+    .attr("y", height - 491)
+    .attr("dy", ".35em")
+    .style("text-anchor", "end")
+    .text(function(d) { return d;});
+
+
+//series of boolean tests to stage transitions
 
 let firstActive = true;
 let secondActive = false;
 let thirdActive = false;
-let fourthActive = false;
 
 // on click update with new data
 d3
@@ -180,40 +199,64 @@ d3
     // update by plotting the full data
 
     if (firstActive) {
-      d3.select('#firstLine').style('opacity', 0);
+      d3.select('#cardio1').style('opacity', 0.5);
+      d3.select('#mn1').style('opacity', 0.5);
+
+      d3.select('#lineplot1').transition();
 
       svg
         .append('path')
-        .datum(testDataset)
+        .datum(Dementias1)
         .attr('class', 'line')
-        .attr('id', 'secondLine')
+        .attr('id', 'dementias1')
+        .style('stroke', '#AC6FA0')
         .style('opacity', 1)
         .attr('d', valueline);
 
       firstActive = false;
       secondActive = true;
     } else if (secondActive) {
-      d3.select('#secondLine').style('opacity', 0.3);
+        d3.select('#cardio1').style('opacity', 0);
+        d3.select('#mn1').style('opacity', 0);
+        d3.select('#dementias1').style('opacity', 0);
+
+        svg
+            .append('path')
+            .datum(CardioDiseaseAll)
+            .attr('class', 'line')
+            .attr('id', 'cardio2')
+            .style('stroke', '#C74C63')
+            .style('opacity', 1)
+            .attr('d', valueline);
+
+        svg
+            .append('path')
+            .datum(MalignantNeoplasmsAll)
+            .attr('class', 'line')
+            .attr('id', 'mn2')
+            .style('stroke', '#E4803F')
+            .style('opacity', 1)
+            .attr('d', valueline);
+
+        svg
+            .append('path')
+            .datum(DementiasAll)
+            .attr('class', 'line')
+            .attr('id', 'dementia2')
+            .style('stroke', '#AC6FA0')
+            .style('opacity', 1)
+            .attr('d', valueline);
 
       secondActive = false;
       thirdActive = true;
     } else if (thirdActive) {
-      svg
-        .append('path')
-        .datum(secondDataset)
-        .attr('class', 'line')
-        .attr('id', 'thirdLine')
-        .style('stroke', 'red')
-        .style('opacity', 1)
-        .attr('d', valueline);
+        d3.select('#cardio2').style('opacity', 1);
+        d3.select('#mn2').style('opacity', 1);
+        d3.select('#dementias2').style('opacity', 1);
 
-      thirdActive = false;
-      fourthActive = true;
-    } else if (fourthActive) {
-      d3.select('#secondLine').style('opacity', 1);
-
-      fourthActive = false;
     }
   });
 
-//    http://bl.ocks.org/d3noob/5d621a60e2d1d02086bf
+// enter() update() instead of rehashing?, to allow same effect with transitions?
+// http://bl.ocks.org/d3noob/7030f35b72de721622b8
+
