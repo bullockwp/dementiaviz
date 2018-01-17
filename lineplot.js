@@ -260,3 +260,9 @@ d3
 // enter() update() instead of rehashing?, to allow same effect with transitions?
 // http://bl.ocks.org/d3noob/7030f35b72de721622b8
 
+
+
+// https://bl.ocks.org/d3noob/bdf28027e0ce70bd132edc64f1dd7ea4
+// http://bl.ocks.org/phoebebright/3061203
+// http://bl.ocks.org/WilliamQLiu/0aab9d28ab1905ac2c8d
+// http://bl.ocks.org/d3noob/7030f35b72de721622b8
