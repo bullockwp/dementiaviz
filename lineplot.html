@@ -7,28 +7,33 @@
     <script src="./vendor/js/d3/d3.js"></script>
     <link rel="stylesheet" href="./vendor/css/bulma.css">
     <style type="text/css">
-        body {
-            font: 12px Arial;
-        }
-
-        path {
-            stroke: steelblue;
-            stroke-width: 2;
-            fill: none;
-        }
 
         .axis path,
         .axis line {
             fill: none;
             stroke: black;
-            stroke-width: 1;
             shape-rendering: crispEdges;
         }
+
+        .axis text {
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+
+        path {
+            stroke: black;
+            stroke-width: 1;
+            fill: none;
+        }
+
+
     </style>
 
 </head>
 
 <body>
+
+    <h2><b>Death Rate Increase  </b></h2>
 
     <div class="has-text-centered">
         <svg id="linePlot1"></svg>
