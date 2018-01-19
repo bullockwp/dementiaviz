@@ -4,7 +4,7 @@ const pink = '#da3e7b';
 const orange = '#f15a22';
 const green = '#00a05b';
 const blue = '#0071ae';
-const purple = '#6950a1';
+const purple = '#6A5D93';
 const yellow = '#f2be1a';
 
 const popup = d3
@@ -88,7 +88,7 @@ function drawBarPlot(data, transition = false) {
       .attr('y', (d, i) => yScale(i))
       .attr('width', d => xScale(d.estimate))
       .attr('height', yScale.bandwidth())
-      .attr('fill', 'purple')
+      .attr('fill', purple)
       .attr('opacity', (d, i) => 0.33 * (i + 1));
   } else {
     bars
@@ -99,7 +99,7 @@ function drawBarPlot(data, transition = false) {
       .attr('y', (d, i) => yScale(i))
       .attr('width', d => xScale(d.estimate))
       .attr('height', yScale.bandwidth())
-      .attr('fill', 'purple')
+      .attr('fill', purple)
       .attr('opacity', (d, i) => 0.33 * (i + 1));
   }
 }
@@ -135,7 +135,7 @@ function drawPieChart(data) {
     .enter()
     .append('path')
     .attr('class', 'arc')
-    .attr('fill', 'purple')
+    .attr('fill', purple)
     .attr('opacity', (d, i) => 0.33 * (i + 1))
     .attr('d', arc)
     .each((d) => {
@@ -160,23 +160,27 @@ function drawPieChart(data) {
 // Store the displayed angles in _current.
 // Then, interpolate from _current to the new angles.
 // During the transition, _current is updated in-place by d3.interpolate.
-function arcTween(a, arc) {
+function arcTween(a) {
   const i = d3.interpolate(this._current, a);
   this._current = i(0);
   return t => arc(i(t));
 }
 
-function arcTransition(arc, pie, arcs, data) {
+function arcTransition(data) {
   arcs
     .data(pie(data))
     .transition()
     .duration(1000)
-    .attrTween('d', d => arcTween(d, arc));
+    .attrTween('d', arcTween);
 }
 
 d3
   .queue()
-  .defer(d3.csv, 'https://na399.github.io/dementiaviz/data/csv/population-estimates.csv', rowConverter)
+  .defer(
+    d3.csv,
+    'https://na399.github.io/dementiaviz/data/csv/population-estimates.csv',
+    rowConverter,
+  )
   // .defer(d3.csv, 'dataByDistrict.csv')
   .await((error, populationEstimates) => {
     if (error) throw error;
@@ -227,7 +231,6 @@ d3
 
 initWaypoints();
 
-
 function clearSVG() {
   d3
     .select('#plot-area')
@@ -259,7 +262,6 @@ function addImg(img) {
     .attr('y', 100)
     .attr('width', 600)
     .attr('height', 600);
-
 }
 
 // Waypoints
@@ -279,7 +281,6 @@ function initWaypoints() {
     element: document.getElementById('quote1'),
     handler() {
       clearSVG();
-
       const img = ['img/dr-chan-circle.jpg'];
       addImg(img);
     },
@@ -290,7 +291,6 @@ function initWaypoints() {
     element: document.getElementById('quote2'),
     handler() {
       clearSVG();
-
       const img = ['img/dr-butler-circle.jpg'];
       addImg(img);
     },
@@ -299,36 +299,54 @@ function initWaypoints() {
 
   const populationBar1 = new Waypoint({
     element: document.getElementById('population-bar1'),
-    handler() {
-      clearSVG();
-      
-      drawBarPlot(window.estimates2015, (transition = false));
+    handler(direction) {
+      if (direction === 'down') {
+        clearSVG();
+        drawBarPlot(estimates2015, (transition = false));
+      } else {
+        drawBarPlot(estimates2015, (transition = true));
+      }
     },
     offset: '20%',
   });
 
   const populationBar2 = new Waypoint({
     element: document.getElementById('population-bar2'),
-    handler() {
-      drawBarPlot(window.estimates2030, (transition = true));
+    handler(direction) {
+      if (direction === 'down') {
+        drawBarPlot(estimates2030, (transition = true));
+      } else {
+        clearSVG();
+        drawBarPlot(estimates2030, (transition = false));
+      }
     },
     offset: '20%',
   });
 
   const populationPie1 = new Waypoint({
     element: document.getElementById('population-pie1'),
-    handler() {
-      clearSVG();
-      drawPieChart(window.estimates2015)
-      arcTransition(window.arc, window.pie, window.arcs, window.estimates2015);
+    handler(direction) {
+      if (direction === 'down') {
+        clearSVG();
+        drawPieChart(estimates2015);
+        arcTransition(estimates2015);
+      } else {
+        arcTransition(estimates2015);
+      }
     },
     offset: '20%',
   });
 
   const populationPie2 = new Waypoint({
     element: document.getElementById('population-pie2'),
-    handler() {
-      arcTransition(window.arc, window.pie, window.arcs, window.estimates2030);
+    handler(direction) {
+      if (direction === 'down') {
+        arcTransition(estimates2030);
+      } else {
+        clearSVG();
+        drawPieChart(estimates2030);
+        arcTransition(estimates2030);
+      }
     },
     offset: '20%',
   });
