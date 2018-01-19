@@ -8,11 +8,11 @@
     <title>DementiaViz: Interactive visualisation of Dementia Prevalence</title>
 
     <link rel="stylesheet" href="dementiaviz.css">
-    <link rel="stylesheet" href="vendor/css/leaflet.css">
-    <link href="https://fonts.googleapis.com/css?family=Prompt:200,400&subset=thai" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Prompt:200,400" rel="stylesheet">
 </head>
 
 <body>
+
     <div id="plot-area"></div>
 
     <div class="sections">
@@ -50,36 +50,116 @@
         <section id="population-bar1">
             <h2>World population estimates</h2>
             <br>
-            <h1>in 2015</h1>
+            <h1>2015</h1>
             <div class="content">
                 <span style="font-size: 25px">The elderly represents a small proportion.</span>
             </div>
         </section>
         <section id="population-bar2">
             <br>
-            <h1>in 2030</h1>
+            <h1>2030</h1>
             <div class="content">
-                <span style="font-size: 25px">The number of people with age 65+ will double.</span>
+                <span style="font-size: 25px">The number of people with age 65+ will nearly double in 15 years.</span>
             </div>
         </section>
-        <!-- <section id="population-pie1">
-            <h1>Dr Robert Butler</h1>
+        <section id="population-pie1">
+            <h2>Ageing population</h2>
             <br>
-            <h2>Gerontologist, psychiatrist, and Pulitzer Prize winner</h2>
+            <h1>2015</h1>
             <div class="content">
-                <span style="font-size: 25px">"Unless we find ways to prevent or cure Alzheimer’s and other severe dementing diseases, the world will shortly
-                    be confronted with … the epidemic of the 21st century."</span>
+                <span style="font-size: 25px">We had 8.3% of the population as elderly people.</span>
             </div>
         </section>
         <section id="population-pie2">
-            <h1>Dr Robert Butler</h1>
             <br>
-            <h2>Gerontologist, psychiatrist, and Pulitzer Prize winner</h2>
+            <h1>2030</h1>
             <div class="content">
-                <span style="font-size: 30px">"Unless we find ways to prevent or cure Alzheimer’s and other severe dementing diseases, the world will shortly
-                    be confronted with … the epidemic of the 21st century."</span>
+                <span style="font-size: 25px">This number will rise to 13.5% in the short future.
+                    <br>
+                    <br> Some countries will experience more significant increases that others.</span>
             </div>
-        </section> -->
+        </section>
+        <section id="disease-bar1">
+            <h2>Causes of deaths are shifting</h2>
+            <br>
+            <h1>2000</h1>
+            <div class="content">
+                <span style="font-size: 25px">Alzheimer's and other dementias were not among the top 20 causes of death globally.
+                    <br>
+                    <br> The death rate had been largely stable throughout the 80's and 90's. </span>
+            </div>
+        </section>
+        <section id="disease-bar2">
+            <br>
+            <h1>2005</h1>
+            <div class="content">
+                <span style="font-size: 25px">In recent years however, the prevalence of dementias have steadily risen.</span>
+
+            </div>
+        </section>
+        <section id="disease-bar3">
+            <br>
+            <h1>2010</h1>
+            <div class="content">
+                <span style="font-size: 25px">As medical advancements continue to provide innovative new treatments for diseases encountered earlier in
+                    life, the global population ages.
+                    <br>
+                    <br> Thus the proportion of the population at risk of dementias continues to grow also.</span>
+            </div>
+        </section>
+        <section id="disease-bar4">
+            <br>
+            <h1>2015</h1>
+            <div class="content">
+                <span style="font-size: 25px">The death rate of Alzheimer's and other dementias has doubled in the last 15 years.
+                    <br>
+                    <br> It is now the 7th most common cause of death globally, overtaking once feared global epidemics like
+                    HIV and Tuberculosis.</span>
+            </div>
+        </section>
+        <section id="rate-line1">
+            <h2>We are doing better in treating some diseases but not dementias</h2>
+            <br>
+            <h1>2000</h1>
+            <div class="content">
+                <span style="font-size: 25px"> While the death rate for cardiovascular diseases and cancer is still much higher, the prevalence of these
+                    diseases remains mostly stable, despite an ageing population. </span>
+            </div>
+        </section>
+        <section id="rate-line2">
+            <br>
+            <h1>2000</h1>
+            <div class="content">
+                <span style="font-size: 25px">This is not the case for Alzheimer's and other dementias. </span>
+            </div>
+        </section>
+        <section id="rate-line4">
+            <br>
+            <h1>2010</h1>
+            <div class="content">
+                <span style="font-size: 25px">While there are established medical methods for the prevention, diagnosis, monitoring, and treatment of cardiovascular
+                    diseases and cancers, there are none for dementias.
+                </span>
+            </div>
+        </section>
+        <section id="rate-line5">
+            <br>
+            <h1>2015</h1>
+            <div class="content">
+                <span style="font-size: 25px">The death rate for dementias has doubled in the last 15 years. This is expected to continue.
+                    <br>
+                    <br> As our generation ages, it is expected to become the one of the greatest causes of disability and loss
+                    of life.</span>
+            </div>
+        </section>
+        <section id="counter">
+            <h2>Last but not least</h2>
+            <br>
+            <h1>This is the number of new Dementia patients worldwide</h1>
+            <div class="content">
+                <span style="font-size: 25px">while you have been viewing this page.</span>
+            </div>
+        </section>
     </div>
     <div id="popup">
     </div>
@@ -91,11 +171,19 @@
     <script src="node_modules/topojson/build/topojson.min.js"></script> -->
     <script src="vendor/js/lodash.min.js"></script>
     <script src="vendor/js/waypoint.min.js"></script>
+    <!-- <script src="vendor/js/jquery.min.js"></script> -->
 
     <script src="src/dementiaviz.js"></script>
+    <script src="src/barplot.js"></script>
+    <script src="src/lineplot.js"></script>
+
     <!-- <script src="src/population.js"></script> -->
 
     <script type="text/javascript">
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        }
+
         window.heap = window.heap || [], heap.load = function (e, t) {
             window.heap.appid = e, window.heap.config = t = t || {};
             var r = t.forceSSL || "https:" === document.location.protocol,
