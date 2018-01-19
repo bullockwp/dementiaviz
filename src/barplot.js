@@ -63,7 +63,7 @@
 
         let dataset = data2000;
 
-        let colour = ['#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#AC6FA0'];
+        let colour = ['#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#6A5D93'];
 
         dataset.sort(function (b, a) {
             return a.dr - b.dr;
@@ -105,6 +105,7 @@
             .data(dataset)
             .enter()
             .append("rect")
+            .attr('class', 'diseaseBar')
             .attr("x", function (d) {
                 return x(d.disease);
             })
@@ -120,7 +121,7 @@
             })
             .on("mouseover", function (d) {  // Create tooltip on mouse-over
                 let xPosition = parseFloat(d3.select(this).attr("x")) + 200;
-                let yPosition = parseFloat(d3.select(this).attr("y")) / 2 + height / 2.5;
+                let yPosition = parseFloat(d3.select(this).attr("y")) /2 + height / 2.5;
 
                 // Update the tooltip position and value
                 d3.select("#tooltip")
@@ -128,10 +129,10 @@
                     .style("top", yPosition + "px")
                     .html(d.disease + '<br/>' + 'Estimated death rate: ' + d.dr + ' per 100 000' + '<br/>' + 'Estimated Total Deaths: ' + d.td);
 
-                d3.select("#tooltip").classed("hidden", false);  // Show the tooltip
+                d3.select("#tooltip").classed("hide", false);  // Show the tooltip
             })
             .on("mouseout", function () {  // re-hide tooltip on mouse-out
-                d3.select("#tooltip").classed("hidden", true);  // Hide the tooltip
+                d3.select("#tooltip").classed("hide", true);  // Hide the tooltip
             });
 
 // Create Text Labels
@@ -214,7 +215,7 @@
 
             dataset = data2000;
 
-            colour = ['#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#AC6FA0'];
+            colour = ['#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#6A5D93'];
 
             dataset.sort(function (b, a) {
                 return a.dr - b.dr;
@@ -286,7 +287,7 @@
 
             dataset = data2005;
 
-            colour = ['#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#AC6FA0'];
+            colour = ['#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#6A5D93'];
 
             dataset.sort(function (b, a) {
                 return a.dr - b.dr;
@@ -358,7 +359,7 @@
 
             dataset = data2010;
 
-            colour = ['#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#AC6FA0'];
+            colour = ['#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#6A5D93'];
 
             dataset.sort(function (b, a) {
                 return a.dr - b.dr;
@@ -431,7 +432,7 @@
 
             dataset = data2015;
 
-            colour = ['#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#AC6FA0', '#387FAA', '#387FAA', '#387FAA'];
+            colour = ['#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#6A5D93', '#387FAA', '#387FAA', '#387FAA'];
 
             dataset.sort(function (b, a) {
                 return a.dr - b.dr;
@@ -512,3 +513,23 @@
 
 })));
 
+
+// const popup = d3
+//     .select('#popup')
+//     .append('div')
+//     .attr('class', 'popupContent')
+//     .classed('hidden', true);
+//
+// function showPopup(x, y, text) {
+//     if (text) {
+//         popup.html(text);
+//     }
+//     popup.style('left', `${x + 16}px`);
+//     popup.style('top', `${y - 16}px`);
+//     popup.classed('hidden', false);
+// }
+//
+// function hidePopup() {
+//     popup.classed('hidden', true);
+//
+// }
