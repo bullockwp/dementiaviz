@@ -38,11 +38,11 @@ function rowConverter(d) {
     area: d.area,
     code: d.code,
     // year: new Date(+d.year),
-    year: parseInt(d.year),
-    total: parseInt(d.total),
-    '0-14': parseInt(d['0-14']),
-    '15-64': parseInt(d['15-64']),
-    '65+': parseInt(d['65+']),
+    year: parseInt(d.year, 10),
+    total: parseInt(d.total, 10),
+    '0-14': parseInt(d['0-14'], 10),
+    '15-64': parseInt(d['15-64'], 10),
+    '65+': parseInt(d['65+'], 10),
   };
 }
 
@@ -105,11 +105,8 @@ function drawBarPlot(data, transition = false) {
 }
 
 function drawPieChart(data) {
-
-  console.log(parseInt(svg.style("width")));
-
-  const w = parseInt(svg.style("width"));
-  const h = parseInt(svg.style("height"));
+  const w = parseInt(svg.style('width'), 10);
+  const h = parseInt(svg.style('height'), 10);
   const padding = 40;
 
   const outerRadius = Math.min(w, h) / 2;
@@ -261,28 +258,38 @@ function addImg(img) {
     .enter()
     .append('image')
     .attr('xlink:href', img)
-    .attr('x', 0)
-    .attr('y', 100)
-    .attr('width', 600)
-    .attr('height', 600);
+    .attr('x', '20%')
+    .attr('y', '20%')
+    .attr('width', '60%')
+    .attr('height', '60%');
 }
 
 let newPatient = 0;
+let t;
 
 function counter() {
   newPatient += 1;
-  console.log(newPatient);
   setTimeout(counter, 3000);
 }
 
 counter();
 
 function addCounter() {
-  d3
-    .select('#plot-area')
-    .select('svg')
-    .text(newPatient)
-    //.attr('id', 'counter-number');
+  if (window.counterIsInView) {
+    const svg = d3.select('#plot-area').select('svg');
+
+    const w = parseInt(svg.style('width'), 10);
+    const h = parseInt(svg.style('height'), 10);
+
+    svg.selectAll('*').remove();
+
+    svg
+      .append('g')
+      .attr('transform', `translate(${w / 2},${h / 2})`)
+      .html(`<text style="font-size: 120px; text-align: center; fill: ${purple}">${newPatient}</text>`);
+
+    setTimeout(addCounter, 1000);
+  }
 }
 
 // Waypoints
@@ -292,8 +299,8 @@ function initWaypoints() {
     handler() {
       clearSVG();
       // d3.select('.bar-plot').classed('hidden', true);
-      const text = ['[cover picture]'];
-      addText(text);
+      // const text = ['[cover picture]'];
+      // addText(text);
     },
     offset: '-1%',
   });
@@ -376,7 +383,6 @@ function initWaypoints() {
     element: document.getElementById('disease-bar1'),
     handler() {
       clearSVG();
-
       diseasePlot.drawDiseasePlot();
     },
     offset: '20%',
@@ -400,8 +406,14 @@ function initWaypoints() {
 
   const diseaseBar4 = new Waypoint({
     element: document.getElementById('disease-bar4'),
-    handler() {
-      diseasePlot.updateData2015();
+    handler(direction) {
+      if (direction === 'down') {
+        diseasePlot.updateData2015();
+      } else {
+        clearSVG();
+        diseasePlot.drawDiseasePlot();
+        diseasePlot.updateData2015();
+      }
     },
     offset: '20%',
   });
@@ -427,13 +439,12 @@ function initWaypoints() {
     offset: '20%',
   });
 
-
   const rateLine4 = new Waypoint({
     element: document.getElementById('rate-line4'),
     handler(direction) {
       if (direction === 'down') {
         diseasePlot.updateThree();
-      } 
+      }
     },
     offset: '20%',
   });
@@ -444,6 +455,7 @@ function initWaypoints() {
       if (direction === 'down') {
         diseasePlot.updateFour();
       } else {
+        window.counterIsInView = false;
         clearSVG();
         diseasePlot.drawRatePlot();
         diseasePlot.updateOne();
@@ -458,6 +470,7 @@ function initWaypoints() {
     element: document.getElementById('counter'),
     handler() {
       clearSVG();
+      window.counterIsInView = true;
       addCounter();
     },
     offset: '20%',
