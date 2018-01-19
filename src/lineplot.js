@@ -68,15 +68,21 @@
 
     function drawRatePlot() {
 
+    let svg = d3
+        .select('#plot-area')
+        .select('svg')
+        .attr('width', '100%')
+        .attr('height', '100%');
+
 // viewport
-    let margin = {top: 100, right: 100, bottom: 100, left: 100},
-        width = 1000 - margin.left - margin.right,
-        height = 800 - margin.top - margin.bottom;
+    let margin = {top: 100, right: 100, bottom: 200, left: 100},
+        width = parseInt(svg.style("width")) - margin.left - margin.right,
+        height = parseInt(svg.style("height")) - margin.top - margin.bottom;
 
 // Set the ranges
     let x = d3.scaleLinear().range([0, width]);
-    let y = d3.scaleLinear().range([height, 0]);
 
+    let y = d3.scaleLinear().range([height, 0]);
 // define the line
     const valueline = d3.line()
         .x(function (d) {
@@ -85,13 +91,8 @@
         .y(function (d) {
             return y(d.yValue);
         });
-    // .curve(d3.curveMonotoneX); // apply smoothing to the line, breaks animations
 
-    let svg = d3
-        .select('#plot-area')
-        .select('svg')
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom);
+    // .curve(d3.curveMonotoneX); // apply smoothing to the line, breaks animations
 
 // fitting first data series
     let dataset = MalignantNeoplasms1;
@@ -113,6 +114,7 @@
     g
         .append('path')
         .datum(CardioDisease1)
+        .attr('class', 'line')
         .attr('id', 'cardio1')
         .style('stroke', red)
         .style('stroke-width', 5)
@@ -122,6 +124,7 @@
     g
         .append('path')
         .datum(MalignantNeoplasms1)
+        .attr('class', 'line')
         .attr('id', 'mn1')
         .style('stroke', blue)
         .style('stroke-width', 5)
@@ -277,30 +280,36 @@
 
         g.append('path')
             .datum(Dementias1)
+            .attr('class', 'line')
             .attr('id', 'dementia1')
             .style('stroke', purple)
             .style('stroke-width', 5)
             .style('opacity', 1)
             .attr('d', valueline);
 
+        // d3.select('#dementias1')
+        //     .transition()
+        //     .duration(1000)
+        //     .style('opacity', 1);
+
     }
 
     function updateTwo() {
 
-        d3.select('#cardio1')
-            .transition()
-            .duration(750)
-            .style('opacity', 1);
-
-        d3.select('#mn1')
-            .transition()
-            .duration(750)
-            .style('opacity', 1);
-
-        d3.select('#dementias1')
-            .transition()
-            .duration(750)
-            .style('opacity', 1);
+        // d3.select('#cardio1')
+        //     .transition()
+        //     .duration(750)
+        //     .style('opacity', 1);
+        //
+        // d3.select('#mn1')
+        //     .transition()
+        //     .duration(750)
+        //     .style('opacity', 1);
+        //
+        // d3.select('#dementias1')
+        //     .transition()
+        //     .duration(750)
+        //     .style('opacity', 1);
 
     }
 

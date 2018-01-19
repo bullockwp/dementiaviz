@@ -44,7 +44,7 @@ h2 {
   shape-rendering: crispEdges;
 }
 
-path {
+.line {
   stroke: black;
   stroke-width: 1;
   fill: none;
@@ -190,9 +190,9 @@ path {
   color: white;
   background-color: rgba(0,0,0,0.75);
   padding: 10px;
-  max-width: 200px;
+  max-width: 300px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  font-size: 14px;
+  font-size: 16px;
   pointer-events: none;
 }
 

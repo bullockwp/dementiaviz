@@ -105,8 +105,11 @@ function drawBarPlot(data, transition = false) {
 }
 
 function drawPieChart(data) {
-  const w = 500;
-  const h = 500;
+
+  console.log(parseInt(svg.style("width")));
+
+  const w = parseInt(svg.style("width"));
+  const h = parseInt(svg.style("height"));
   const padding = 40;
 
   const outerRadius = Math.min(w, h) / 2;

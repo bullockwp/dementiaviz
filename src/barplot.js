@@ -61,31 +61,31 @@
 
     function drawDiseasePlot() {
 
-        let dataset = data2000;
-
-        let colour = ['#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#6A5D93'];
-
-        dataset.sort(function (b, a) {
-            return a.dr - b.dr;
-        });
-
-// set the dimensions and margins of the graph
-        let margin = {top: 100, right: 100, bottom: 10, left: 100},
-            width = 1000 - margin.left - margin.right,
-            height = 700 - margin.top - margin.bottom;
-
-// set the ranges
-        let x = d3.scaleBand()
-            .range([0, width])
-            .padding(0.3);
-        let y = d3.scaleLinear()
-            .range([height, 0]);
-
         let svg = d3
             .select('#plot-area')
             .select('svg')
             .attr('width', '100%')
             .attr('height', '100%');
+
+        let dataset = data2000;
+
+        let colour = ['#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#387FAA', '#6A5D93'];
+        dataset.sort(function (b, a) {
+            return a.dr - b.dr;
+
+        });
+
+// set the dimensions and margins of the graph
+        let margin = {top: 100, right: 100, bottom: 200, left: 100},
+            width = parseInt(svg.style("width")) - margin.left - margin.right,
+            height = parseInt(svg.style("height")) - margin.top - margin.bottom;
+// set the ranges
+        let x = d3.scaleBand()
+            .range([0, width])
+            .padding(0.3);
+
+        let y = d3.scaleLinear()
+            .range([height, 0]);
 
 
 // Scale the range of the data in the domains
@@ -119,21 +119,32 @@
             .attr("fill", function (d, i) {
                 return colour[i]
             })
-            .on("mouseover", function (d) {  // Create tooltip on mouse-over
-                let xPosition = parseFloat(d3.select(this).attr("x")) + 200;
-                let yPosition = parseFloat(d3.select(this).attr("y")) /2 + height / 2.5;
+            .on("mouseover", function(d,i) {
+                let ev = d3.event;
+                let popupText = d.disease + '<br/>' + 'Estimated death rate: ' + d.dr + ' per 100000' + '<br/>' + 'Estimated Total Deaths: ' + d.td;
+                showPopup(ev.pageX, ev.pageY, popupText);
 
-                // Update the tooltip position and value
-                d3.select("#tooltip")
-                    .style("left", xPosition + "px")
-                    .style("top", yPosition + "px")
-                    .html(d.disease + '<br/>' + 'Estimated death rate: ' + d.dr + ' per 100 000' + '<br/>' + 'Estimated Total Deaths: ' + d.td);
-
-                d3.select("#tooltip").classed("hide", false);  // Show the tooltip
             })
-            .on("mouseout", function () {  // re-hide tooltip on mouse-out
-                d3.select("#tooltip").classed("hide", true);  // Hide the tooltip
+            .on("mouseout", function(d,i) {
+                hidePopup();
             });
+
+            //  //  old tooltip
+            // .on("mouseover", function (d) {  // Create tooltip on mouse-over
+            //     let xPosition = parseFloat(d3.select(this).attr("x")) + 200;
+            //     let yPosition = parseFloat(d3.select(this).attr("y")) /2 + height / 2.5;
+            //
+            //     // Update the tooltip position and value
+            //     d3.select("#tooltip")
+            //         .style("left", xPosition + "px")
+            //         .style("top", yPosition + "px")
+            //         .html(d.disease + '<br/>' + 'Estimated death rate: ' + d.dr + ' per 100 000' + '<br/>' + 'Estimated Total Deaths: ' + d.td);
+            //
+            //     d3.select("#tooltip").classed("hide", false);  // Show the tooltip
+            // })
+            // .on("mouseout", function () {  // re-hide tooltip on mouse-out
+            //     d3.select("#tooltip").classed("hide", true);  // Hide the tooltip
+            // });
 
 // Create Text Labels
         g.selectAll("text")
@@ -151,7 +162,7 @@
             })
             .attr("font-family", "sans-serif") // Change text font
             .attr("font-size", "12px") // Font size
-            .attr("text-anchor", "middle") // Align to middle
+            .style("text-anchor", "middle") // Align to middle
             .attr("fill", "white");  // Color of font
 
 // add the x Axis
@@ -512,24 +523,3 @@
     Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
-
-
-// const popup = d3
-//     .select('#popup')
-//     .append('div')
-//     .attr('class', 'popupContent')
-//     .classed('hidden', true);
-//
-// function showPopup(x, y, text) {
-//     if (text) {
-//         popup.html(text);
-//     }
-//     popup.style('left', `${x + 16}px`);
-//     popup.style('top', `${y - 16}px`);
-//     popup.classed('hidden', false);
-// }
-//
-// function hidePopup() {
-//     popup.classed('hidden', true);
-//
-// }
