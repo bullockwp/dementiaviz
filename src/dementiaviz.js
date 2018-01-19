@@ -49,6 +49,9 @@ function getEstimates(yearsData, ageGroups, year) {
   }));
   return estimates;
 }
+function round(value, decimals) {
+  return Number(`${Math.round(`${value}e${decimals}`)}e-${decimals}`);
+}
 
 const svg = d3
   .select('#plot-area')
@@ -97,7 +100,6 @@ function drawBarPlot(data, transition = false) {
       .transition()
       .duration(1000)
       .call(d3.axisBottom(xScale).ticks(5));
-      
   } else {
     bars
       .enter()
@@ -170,7 +172,7 @@ function drawPieChart(data) {
       const ev = d3.event;
       const popupText = `Age group: ${d.data.age} <br/> Number: ${
         d.data.estimate
-      } <br/> Percentage: ${d.data.estimate / totalPopNumber * 100}`;
+      } <br/> Percentage: ${round(d.data.estimate / totalPopNumber * 100, 1)}%`;
       showPopup(ev.pageX, ev.pageY, popupText);
     })
     .on('mouseout', (d) => {
