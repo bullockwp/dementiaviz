@@ -63,25 +63,21 @@
                 <span style="font-size: 25px">The number of people with age 65+ will double.</span>
             </div>
         </section>
-        <section>
-        <!-- <section id="population-pie1">
-            <h1>Dr Robert Butler</h1>
+        <section id="population-pie1">
+            <h2>World population estimates</h2>
             <br>
-            <h2>Gerontologist, psychiatrist, and Pulitzer Prize winner</h2>
+            <h1>in 2015</h1>
             <div class="content">
-                <span style="font-size: 25px">"Unless we find ways to prevent or cure Alzheimer’s and other severe dementing diseases, the world will shortly
-                    be confronted with … the epidemic of the 21st century."</span>
+                <span style="font-size: 25px">The elderly represents a small proportion.</span>
             </div>
         </section>
         <section id="population-pie2">
-            <h1>Dr Robert Butler</h1>
             <br>
-            <h2>Gerontologist, psychiatrist, and Pulitzer Prize winner</h2>
+            <h1>in 2030</h1>
             <div class="content">
-                <span style="font-size: 30px">"Unless we find ways to prevent or cure Alzheimer’s and other severe dementing diseases, the world will shortly
-                    be confronted with … the epidemic of the 21st century."</span>
+                <span style="font-size: 25px">The number of people with age 65+ will double.</span>
             </div>
-        </section> -->
+        </section>
         <section id="disease-bar1">
             <br>
             <h1>in 2000</h1>
@@ -144,6 +140,7 @@
             <div class="content">
                 <span style="font-size: 25px">The death rate of dementias has doubled in the last 15 years. whilst cardiovascual disease and malignant neoplasms stay stable</span>
             </div>
+
         </section>
 
     </div>
@@ -157,6 +154,7 @@
     <script src="node_modules/topojson/build/topojson.min.js"></script> -->
     <script src="vendor/js/lodash.min.js"></script>
     <script src="vendor/js/waypoint.min.js"></script>
+    <!-- <script src="vendor/js/jquery.min.js"></script> -->
 
     <script src="src/dementiaviz.js"></script>
     <script src="src/barplot.js"></script>
@@ -165,6 +163,8 @@
     <!-- <script src="src/population.js"></script> -->
 
     <script type="text/javascript">
+        window.onbeforeunload = function(){ window.scrollTo(0,0); }
+
         window.heap = window.heap || [], heap.load = function (e, t) {
             window.heap.appid = e, window.heap.config = t = t || {};
             var r = t.forceSSL || "https:" === document.location.protocol,
