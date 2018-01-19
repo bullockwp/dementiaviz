@@ -236,7 +236,7 @@ function arcTransition(arc, pie, arcs, data) {
 
 d3
   .queue()
-  .defer(d3.csv, '../data/csv/population-estimates.csv', rowConverter)
+  .defer(d3.csv, 'https://na399.github.io/dementiaviz/data/csv/population-estimates.csv', rowConverter)
   // .defer(d3.csv, 'dataByDistrict.csv')
   .await((error, populationEstimates) => {
     if (error) throw error;
