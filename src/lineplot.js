@@ -62,12 +62,16 @@
         {xValue: 2015, yValue: 1.97},
     ];
 
+    const purple = '#6A5D93';
+    const red = '#C74C63';
+    const blue ='#387FAA';
+
     function drawRatePlot() {
 
 // viewport
-    let margin = {top: 10, right: 10, bottom: 50, left: 50},
-        width = 1200 - margin.left - margin.right,
-        height = 700 - margin.top - margin.bottom;
+    let margin = {top: 100, right: 100, bottom: 100, left: 100},
+        width = 1000 - margin.left - margin.right,
+        height = 800 - margin.top - margin.bottom;
 
 // Set the ranges
     let x = d3.scaleLinear().range([0, width]);
@@ -110,7 +114,7 @@
         .append('path')
         .datum(CardioDisease1)
         .attr('id', 'cardio1')
-        .style('stroke', '#C74C63')
+        .style('stroke', red)
         .style('stroke-width', 5)
         .style('opacity', 1)
         .attr('d', valueline);
@@ -119,7 +123,7 @@
         .append('path')
         .datum(MalignantNeoplasms1)
         .attr('id', 'mn1')
-        .style('stroke', '#E4803F')
+        .style('stroke', blue)
         .style('stroke-width', 5)
         .style('opacity', 1)
         .attr('d', valueline);
@@ -128,7 +132,9 @@
     g.append("g")
         .attr('class', 'xaxis')
         .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
+        .call(d3.axisBottom(x)
+            .ticks(5)
+            .tickFormat(d3.format('')));
 
 // Add the Y Axis
     g.append("g")
@@ -158,19 +164,19 @@
         .attr('transform', 'rotate(-90)');
 
     let legend = g.selectAll(".legend")
-        .data(['Cardiovascular Diseases', 'Malignant Neoplasms', 'Alzheimer\'s Disease and Other Dementias'])
+        .data(['Alzheimer\'s Disease and Other Dementias', 'Malignant Neoplasms','Cardiovascular Diseases'])
         .enter().append("g")
         .attr("class", "legend")
         .attr("transform", function (d, i) {
             return "translate(0," + i * 20 + ")";
         });
 
-    const colour = ['#C74C63', '#E4803F', '#AC6FA0'];
+    const colour = [purple, blue, red];
 
 // draw legend colored rectangles
     legend.append("rect")
         .attr("x", width - 800)
-        .attr("y", height - 600)
+        .attr("y", height + 40)
         .attr("width", 15)
         .attr("height", 15)
         .style("fill", function (d, i) {
@@ -181,10 +187,10 @@
 
 // draw legend text
     legend.append("text")
-        .attr("x", width - 810)
-        .attr("y", height - 588)
+        .attr("x", width - 765)
+        .attr("y", height + 55)
         // .attr("dy", ".35em")
-        .style("text-anchor", "end")
+        .style("text-anchor", "start")
         .text(function (d) {
             return d;
         });
@@ -246,7 +252,10 @@
         g.select(".xaxis") // update the x axis
             .transition()
             .duration(1000)
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(x)
+                .ticks(5)
+                .tickFormat(d3.format('')));
+
 
         g.select(".yaxis") // update the x axis
             .transition()
@@ -269,7 +278,7 @@
         g.append('path')
             .datum(Dementias1)
             .attr('id', 'dementia1')
-            .style('stroke', '#AC6FA0')
+            .style('stroke', purple)
             .style('stroke-width', 5)
             .style('opacity', 1)
             .attr('d', valueline);
@@ -311,7 +320,7 @@
             .transition()
             .duration(1000)
             .attr("d", valueline(CardioDisease2))
-            .style('opacity', 1);
+            .style('opacity', 0.5);
 
         d3.select('#dementia1')
             .transition()
@@ -324,12 +333,15 @@
             .transition()
             .duration(1000)
             .attr("d", valueline(MalignantNeoplasms2))
-            .style('opacity', 1);
+            .style('opacity', 0.5);
 
         g.select(".xaxis") // update the x axis
             .transition()
             .duration(1000)
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(x)
+                .ticks(10)
+                .tickFormat(d3.format('')));
+
 
         g.select(".yaxis") // update the x axis
             .transition()
@@ -354,7 +366,7 @@
             .transition()
             .duration(1000)
             .attr("d", valueline(CardioDisease3))
-            .style('opacity', 1);
+            .style('opacity', 0.5);
 
         d3.select('#dementia1')
             .transition()
@@ -366,12 +378,14 @@
             .transition()
             .duration(1000)
             .attr("d", valueline(MalignantNeoplasms3))
-            .style('opacity', 1);
+            .style('opacity', 0.5);
 
         g.select(".xaxis") // update the x axis
             .transition()
             .duration(1000)
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(x)
+                .ticks(15)
+                .tickFormat(d3.format('')));
 
         g.select(".yaxis") // update the x axis
             .transition()

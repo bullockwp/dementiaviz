@@ -37,6 +37,19 @@ h2 {
   line-height: 36px;
 }
 
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+
+path {
+  stroke: black;
+  stroke-width: 1;
+  fill: none;
+}
+
 .hidden {
   display: none;
 }
@@ -181,4 +194,8 @@ h2 {
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
   font-size: 14px;
   pointer-events: none;
+}
+
+.diseaseBar:hover {
+  fill: orange;
 }
