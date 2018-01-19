@@ -137,7 +137,7 @@ function drawBarPlot(data, transition = false) {
     .rangeRound([h - padding, padding])
     .paddingInner(0.05);
 
-  svg.append('g').attr('class', 'bar-plot hidden');
+  svg.append('g').attr('class', 'bar-plot');
 
   const bars = svg
     .select('g.bar-plot')
@@ -252,7 +252,7 @@ d3
     window.estimates2015 = getEstimates(selectedYears, ageGroups, 2015);
     window.estimates2030 = getEstimates(selectedYears, ageGroups, 2030);
 
-    drawBarPlot(estimates2015);
+    // drawBarPlot(estimates2015);
 
     let numClicks = 0;
 
@@ -597,7 +597,6 @@ function initWaypoints() {
     element: document.getElementById('quote1'),
     handler() {
       clearSVG();
-      d3.select('.bar-plot').classed('hidden', true);
 
       const img = ['img/dr-chan-circle.jpg'];
       addImg(img);
@@ -609,7 +608,6 @@ function initWaypoints() {
     element: document.getElementById('quote2'),
     handler() {
       clearSVG();
-      d3.select('.bar-plot').classed('hidden', true);
 
       const img = ['img/dr-butler-circle.jpg'];
       addImg(img);
