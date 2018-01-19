@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BarPlot</title>
+    <script src="./vendor/js/d3/d3.js"></script>
+
+    <style type="text/css">
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+        }
+
+        .axis text {
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+
+        rect:hover {
+            fill: orange;
+        }
+
+        #tooltip {
+            position: absolute;
+            width: auto;
+            height: auto;
+            padding: 10px;
+            background-color: white;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+        }
+
+        #tooltip.hidden {
+            display: none;
+        }
+
+        #tooltip p {
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+
+<div id="tooltip" class="tooltip hidden"></div>
+
+<h2><b>Death Rate per 100 000 Population </b></h2>
+
+<div id="option">
+    <input name="updateButton2005"
+           type="button"
+           value="2000"
+           onclick="updateData2000()" />
+</div>
+
+<div id="option">
+    <input name="updateButton2005"
+           type="button"
+           value="2005"
+           onclick="updateData2005()" />
+</div>
+
+<div id="option">
+    <input name="updateButton2005"
+           type="button"
+           value="2010"
+           onclick="updateData2010()" />
+</div>
+
+<div id="option">
+    <input name="updateButton2005"
+           type="button"
+           value="2015"
+           onclick="updateData2015()" />
+</div>
+
+
+<div class="has-text-centered">
+    <svg id="bar1"></svg>
+</div>
+
+
+<script src="barplot.js"></script>
+
+</body>
+</html>
