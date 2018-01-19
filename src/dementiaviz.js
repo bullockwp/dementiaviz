@@ -128,7 +128,7 @@ function drawBarPlot(data, transition = false) {
   const xScale = d3
     .scaleLinear()
     .domain([0, d3.max(window.estimates2030, d => d.estimate)])
-    //.domain([0, 7000000])
+    // .domain([0, 7000000])
     .range([padding, w - padding]);
 
   const yScale = d3
@@ -137,11 +137,12 @@ function drawBarPlot(data, transition = false) {
     .rangeRound([h - padding, padding])
     .paddingInner(0.05);
 
-  svg
-    .append('g')
-    .attr('class', 'bar-plot hidden');
+  svg.append('g').attr('class', 'bar-plot hidden');
 
-  const bars = svg.select('g.bar-plot').selectAll('rect').data(data);
+  const bars = svg
+    .select('g.bar-plot')
+    .selectAll('rect')
+    .data(data);
 
   if (transition) {
     bars
@@ -576,7 +577,7 @@ function initWaypoints() {
       const text = ['[Dr Chan]'];
       addText(text);
     },
-    offset: '10%',
+    offset: '20%',
   });
 
   const quote2 = new Waypoint({
@@ -587,7 +588,7 @@ function initWaypoints() {
       const text = ['[Dr Butler]'];
       addText(text);
     },
-    offset: '10%',
+    offset: '20%',
   });
 
   const populationBar1 = new Waypoint({
@@ -595,9 +596,9 @@ function initWaypoints() {
     handler() {
       clearSVGtext();
       d3.select('.bar-plot').classed('hidden', false);
-      drawBarPlot(estimates2015, (transition = true));
+      drawBarPlot(window.estimates2015, (transition = true));
     },
-    offset: '10%',
+    offset: '20%',
   });
 
   const populationBar2 = new Waypoint({
@@ -605,10 +606,8 @@ function initWaypoints() {
     handler() {
       drawBarPlot(window.estimates2030, (transition = true));
     },
-    offset: '10%',
+    offset: '20%',
   });
-
-  
 
   /*   new Waypoint({
     element: document.getElementById('transport-intro'),
