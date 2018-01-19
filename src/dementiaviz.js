@@ -105,8 +105,11 @@ function drawBarPlot(data, transition = false) {
 }
 
 function drawPieChart(data) {
-  const w = 500;
-  const h = 500;
+
+  console.log(parseInt(svg.style("width")));
+
+  const w = parseInt(svg.style("width"));
+  const h = parseInt(svg.style("height"));
   const padding = 40;
 
   const outerRadius = Math.min(w, h) / 2;
@@ -400,15 +403,6 @@ function initWaypoints() {
         handler() {
 
             diseasePlot.updateOne();
-        },
-        offset: '20%',
-    });
-
-    const rateLine3 = new Waypoint({
-        element: document.getElementById('rate-line3'),
-        handler() {
-
-            diseasePlot.updateTwo();
         },
         offset: '20%',
     });
