@@ -621,8 +621,6 @@ function initWaypoints() {
       clearSVG();
       
       drawBarPlot(window.estimates2015, (transition = false));
-
-      d3.select('.bar-plot').classed('hidden', false);
     },
     offset: '20%',
   });
