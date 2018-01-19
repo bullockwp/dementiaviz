@@ -137,7 +137,7 @@ function drawBarPlot(data, transition = false) {
     .rangeRound([h - padding, padding])
     .paddingInner(0.05);
 
-  svg.append('g').attr('class', 'bar-plot hidden');
+  svg.append('g').attr('class', 'bar-plot');
 
   const bars = svg
     .select('g.bar-plot')
@@ -252,7 +252,7 @@ d3
     window.estimates2015 = getEstimates(selectedYears, ageGroups, 2015);
     window.estimates2030 = getEstimates(selectedYears, ageGroups, 2030);
 
-    drawBarPlot(estimates2015);
+    // drawBarPlot(estimates2015);
 
     let numClicks = 0;
 
@@ -538,11 +538,11 @@ function drawTransit(system) {
     .style('stroke', system == 'train' ? red : grey);
 } */
 
-function clearSVGtext() {
+function clearSVG() {
   d3
     .select('#plot-area')
     .select('svg')
-    .selectAll('text')
+    .selectAll('*')
     .remove();
 }
 
@@ -556,12 +556,36 @@ function addText(text) {
     .attr('transform', 'translate(400,300)');
 }
 
+function addImg(img) {
+  // d3
+  //   .select('#plot-area')
+  //   .selectAll('*')
+  //   .remove();
+
+  d3
+    .select('#plot-area')
+    .select('svg')
+    .selectAll('image')
+    .data(img)
+    .enter()
+    // .append('svg')
+    // .attr('width', 600)
+    // .attr('height', 700)
+    .append('image')
+    .attr('xlink:href', img)
+    .attr('x', 0)
+    .attr('y', 100)
+    .attr('width', 600)
+    .attr('height', 600);
+
+}
+
 // Waypoints
 function initWaypoints() {
   const cover = new Waypoint({
     element: document.getElementById('cover'),
     handler() {
-      clearSVGtext();
+      clearSVG();
       d3.select('.bar-plot').classed('hidden', true);
       const text = ['[cover picture]'];
       addText(text);
@@ -572,10 +596,10 @@ function initWaypoints() {
   const quote1 = new Waypoint({
     element: document.getElementById('quote1'),
     handler() {
-      clearSVGtext();
-      d3.select('.bar-plot').classed('hidden', true);
-      const text = ['[Dr Chan]'];
-      addText(text);
+      clearSVG();
+
+      const img = ['img/dr-chan-circle.jpg'];
+      addImg(img);
     },
     offset: '20%',
   });
@@ -583,10 +607,10 @@ function initWaypoints() {
   const quote2 = new Waypoint({
     element: document.getElementById('quote2'),
     handler() {
-      clearSVGtext();
-      d3.select('.bar-plot').classed('hidden', true);
-      const text = ['[Dr Butler]'];
-      addText(text);
+      clearSVG();
+
+      const img = ['img/dr-butler-circle.jpg'];
+      addImg(img);
     },
     offset: '20%',
   });
@@ -594,9 +618,11 @@ function initWaypoints() {
   const populationBar1 = new Waypoint({
     element: document.getElementById('population-bar1'),
     handler() {
-      clearSVGtext();
+      clearSVG();
+      
+      drawBarPlot(window.estimates2015, (transition = false));
+
       d3.select('.bar-plot').classed('hidden', false);
-      drawBarPlot(window.estimates2015, (transition = true));
     },
     offset: '20%',
   });
