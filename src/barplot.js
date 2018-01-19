@@ -162,7 +162,7 @@
             })
             .attr("font-family", "sans-serif") // Change text font
             .attr("font-size", "12px") // Font size
-            .attr("text-anchor", "middle") // Align to middle
+            .style("text-anchor", "middle") // Align to middle
             .attr("fill", "white");  // Color of font
 
 // add the x Axis
