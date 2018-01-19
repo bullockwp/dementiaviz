@@ -199,3 +199,8 @@ h2 {
 .diseaseBar:hover {
   fill: orange;
 }
+
+#counter-number {
+  font: 100px/500px Menlo;
+  text-align: center;
+}

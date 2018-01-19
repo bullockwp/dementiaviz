@@ -150,9 +150,14 @@
                     <br>
                     As our generation ages, it is expected to become the one of the greatest causes of disability and loss of life.</span>
             </div>
-
         </section>
-
+        <section id="counter">
+            <br>
+            <h1>This is a number of new Dementia patients</h1>
+            <div class="content">
+                <span style="font-size: 25px">..., while you have been viewing this page.</span>
+            </div>
+        </section>
     </div>
     <div id="popup">
     </div>
@@ -173,7 +178,9 @@
     <!-- <script src="src/population.js"></script> -->
 
     <script type="text/javascript">
-        window.onbeforeunload = function(){ window.scrollTo(0,0); }
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        }
 
         window.heap = window.heap || [], heap.load = function (e, t) {
             window.heap.appid = e, window.heap.config = t = t || {};

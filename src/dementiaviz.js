@@ -26,7 +26,7 @@ function hidePopup() {
   popup.classed('hidden', true);
 }
 
-let svg = d3
+const svg = d3
   .select('#plot-area')
   .append('svg')
   .attr('width', '100%')
@@ -267,6 +267,24 @@ function addImg(img) {
     .attr('height', 600);
 }
 
+let newPatient = 0;
+
+function counter() {
+  newPatient += 1;
+  console.log(newPatient);
+  setTimeout(counter, 3000);
+}
+
+counter();
+
+function addCounter() {
+  d3
+    .select('#plot-area')
+    .select('svg')
+    .text(newPatient)
+    //.attr('id', 'counter-number');
+}
+
 // Waypoints
 function initWaypoints() {
   const cover = new Waypoint({
@@ -353,77 +371,97 @@ function initWaypoints() {
     },
     offset: '20%',
   });
-  
-    const diseaseBar1 = new Waypoint({
-      element: document.getElementById('disease-bar1'),
-      handler() {
-          clearSVG();
 
-          diseasePlot.drawDiseasePlot();
-      },
-      offset: '20%',
+  const diseaseBar1 = new Waypoint({
+    element: document.getElementById('disease-bar1'),
+    handler() {
+      clearSVG();
+
+      diseasePlot.drawDiseasePlot();
+    },
+    offset: '20%',
   });
 
   const diseaseBar2 = new Waypoint({
-      element: document.getElementById('disease-bar2'),
-      handler() {
-          diseasePlot.updateData2005();
-      },
-      offset: '20%',
+    element: document.getElementById('disease-bar2'),
+    handler() {
+      diseasePlot.updateData2005();
+    },
+    offset: '20%',
   });
 
-    const diseaseBar3 = new Waypoint({
-        element: document.getElementById('disease-bar3'),
-        handler() {
-            diseasePlot.updateData2010();
-        },
-        offset: '20%',
-    });
+  const diseaseBar3 = new Waypoint({
+    element: document.getElementById('disease-bar3'),
+    handler() {
+      diseasePlot.updateData2010();
+    },
+    offset: '20%',
+  });
 
-    const diseaseBar4 = new Waypoint({
-        element: document.getElementById('disease-bar4'),
-        handler() {
-            diseasePlot.updateData2015();
-        },
-        offset: '20%',
-    });
+  const diseaseBar4 = new Waypoint({
+    element: document.getElementById('disease-bar4'),
+    handler() {
+      diseasePlot.updateData2015();
+    },
+    offset: '20%',
+  });
 
-    const rateLine1 = new Waypoint({
-        element: document.getElementById('rate-line1'),
-        handler() {
-            clearSVG();
+  const rateLine1 = new Waypoint({
+    element: document.getElementById('rate-line1'),
+    handler(direction) {
+      if (direction === 'down') {
+        clearSVG();
+        diseasePlot.drawRatePlot();
+      }
+    },
+    offset: '20%',
+  });
 
-            diseasePlot.drawRatePlot();
-        },
-        offset: '20%',
-    });
+  const rateLine2 = new Waypoint({
+    element: document.getElementById('rate-line2'),
+    handler(direction) {
+      if (direction === 'down') {
+        diseasePlot.updateOne();
+      }
+    },
+    offset: '20%',
+  });
 
-    const rateLine2 = new Waypoint({
-        element: document.getElementById('rate-line2'),
-        handler() {
 
-            diseasePlot.updateOne();
-        },
-        offset: '20%',
-    });
+  const rateLine4 = new Waypoint({
+    element: document.getElementById('rate-line4'),
+    handler(direction) {
+      if (direction === 'down') {
+        diseasePlot.updateThree();
+      } 
+    },
+    offset: '20%',
+  });
 
-    const rateLine4 = new Waypoint({
-        element: document.getElementById('rate-line4'),
-        handler() {
+  const rateLine5 = new Waypoint({
+    element: document.getElementById('rate-line5'),
+    handler(direction) {
+      if (direction === 'down') {
+        diseasePlot.updateFour();
+      } else {
+        clearSVG();
+        diseasePlot.drawRatePlot();
+        diseasePlot.updateOne();
+        diseasePlot.updateThree();
+        diseasePlot.updateFour();
+      }
+    },
+    offset: '20%',
+  });
 
-            diseasePlot.updateThree();
-        },
-        offset: '20%',
-    });
-
-    const rateLine5 = new Waypoint({
-        element: document.getElementById('rate-line5'),
-        handler() {
-
-            diseasePlot.updateFour();
-        },
-        offset: '20%',
-    });
+  const counter = new Waypoint({
+    element: document.getElementById('counter'),
+    handler() {
+      clearSVG();
+      addCounter();
+    },
+    offset: '20%',
+  });
 }
 
 const sections = d3.selectAll('.sections section');
