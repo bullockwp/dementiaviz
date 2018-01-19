@@ -26,12 +26,6 @@ function hidePopup() {
   popup.classed('hidden', true);
 }
 
-const svg = d3
-  .select('#plot-area')
-  .append('svg')
-  .attr('width', '100%')
-  .attr('height', '100%');
-
 // Function for converting CSV values from strings to integers
 function rowConverter(d) {
   return {
@@ -56,9 +50,15 @@ function getEstimates(yearsData, ageGroups, year) {
   return estimates;
 }
 
+const svg = d3
+  .select('#plot-area')
+  .append('svg')
+  .attr('width', '100%')
+  .attr('height', '100%');
+
 function drawBarPlot(data, transition = false) {
-  const w = 700;
-  const h = 500;
+  const w = parseInt(svg.style('width'), 10);
+  const h = parseInt(svg.style('height'), 10);
   const padding = 40;
 
   const xScale = d3
@@ -70,10 +70,10 @@ function drawBarPlot(data, transition = false) {
   const yScale = d3
     .scaleBand()
     .domain(d3.range(3))
-    .rangeRound([h - padding, padding])
+    .rangeRound([h / 4 * 3 - padding, h / 4 + padding])
     .paddingInner(0.05);
 
-  svg.append('g').attr('class', 'bar-plot');
+  g = svg.append('g').attr('class', 'bar-plot');
 
   const bars = svg
     .select('g.bar-plot')
@@ -83,6 +83,7 @@ function drawBarPlot(data, transition = false) {
   if (transition) {
     bars
       .transition()
+      .duration(1000)
       .attr('data-age', d => d.age)
       .attr('x', padding)
       .attr('y', (d, i) => yScale(i))
@@ -90,6 +91,13 @@ function drawBarPlot(data, transition = false) {
       .attr('height', yScale.bandwidth())
       .attr('fill', purple)
       .attr('opacity', (d, i) => 0.33 * (i + 1));
+
+    g
+      .select('.x-axis') // update the x axis
+      .transition()
+      .duration(1000)
+      .call(d3.axisBottom(xScale).ticks(5));
+      
   } else {
     bars
       .enter()
@@ -100,11 +108,28 @@ function drawBarPlot(data, transition = false) {
       .attr('width', d => xScale(d.estimate))
       .attr('height', yScale.bandwidth())
       .attr('fill', purple)
-      .attr('opacity', (d, i) => 0.33 * (i + 1));
+      .attr('opacity', (d, i) => 0.33 * (i + 1))
+      .on('mouseover', (d) => {
+        const ev = d3.event;
+        const popupText = `Age group: ${d.age} <br/> Number: ${d.estimate}`;
+        showPopup(ev.pageX, ev.pageY, popupText);
+      })
+      .on('mouseout', (d) => {
+        hidePopup();
+      });
+
+    // Add the X Axis
+    g
+      .append('g')
+      .attr('class', 'x-axis')
+      .attr('transform', `translate(0,${h / 4 * 3 + 10})`)
+      .call(d3.axisBottom(xScale).ticks(5));
   }
 }
 
 function drawPieChart(data) {
+  const totalPopNumber = _.sumBy(data, 'estimate');
+
   const w = parseInt(svg.style('width'), 10);
   const h = parseInt(svg.style('height'), 10);
   const padding = 40;
@@ -125,7 +150,7 @@ function drawPieChart(data) {
   svg
     .append('g')
     .attr('class', 'pie-chart')
-    .attr('transform', `translate(${outerRadius},${outerRadius})`);
+    .attr('transform', `translate(${outerRadius},${h / 2})`);
 
   // Set up groups
   const arcs = svg
@@ -140,14 +165,24 @@ function drawPieChart(data) {
     .attr('d', arc)
     .each((d) => {
       this._current = d;
+    })
+    .on('mouseover', (d) => {
+      const ev = d3.event;
+      const popupText = `Age group: ${d.data.age} <br/> Number: ${
+        d.data.estimate
+      } <br/> Percentage: ${d.data.estimate / totalPopNumber * 100}`;
+      showPopup(ev.pageX, ev.pageY, popupText);
+    })
+    .on('mouseout', (d) => {
+      hidePopup();
     });
 
   // Labels
-  // arcs
-  //   .append('text')
-  //   .attr('transform', d => `translate(${arc.centroid(d)})`)
-  //   .attr('text-anchor', 'middle')
-  //   .text(d => d.data.age);
+  arcs
+    .append('text')
+    .attr('transform', d => `translate(${arc.centroid(d)})`)
+    .attr('text-anchor', 'middle')
+    .text(d => d.data.estimate / totalPopNumber * 100);
 
   window.arc = arc;
   window.pie = pie;
@@ -167,6 +202,8 @@ function arcTween(a) {
 }
 
 function arcTransition(data) {
+  const totalPopNumber = _.sumBy(data, 'estimate');
+
   arcs
     .data(pie(data))
     .transition()
@@ -429,11 +466,14 @@ function initWaypoints() {
     offset: '20%',
   });
 
+  let isUpdatedOne = false;
+
   const rateLine2 = new Waypoint({
     element: document.getElementById('rate-line2'),
     handler(direction) {
-      if (direction === 'down') {
+      if (direction === 'down' && !isUpdatedOne) {
         diseasePlot.updateOne();
+        isUpdatedOne = true;
       }
     },
     offset: '20%',
