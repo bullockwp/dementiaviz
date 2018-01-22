@@ -49,6 +49,7 @@ function getEstimates(yearsData, ageGroups, year) {
   }));
   return estimates;
 }
+
 function round(value, decimals) {
   return Number(`${Math.round(`${value}e${decimals}`)}e-${decimals}`);
 }
@@ -120,12 +121,25 @@ function drawBarPlot(data, transition = false) {
         hidePopup();
       });
 
+    // Add labels
+    g
+      .selectAll('text')
+      .data(data)
+      .enter()
+      .append('text')
+      .text(d => d.age)
+      .attr('x', padding + 10)
+      .attr('y', (d, i) => yScale(i) + (yScale.bandwidth() / 3 * 2))
+      .attr('font-size', yScale.bandwidth() / 3)
+      .attr('fill', 'white');
+
     // Add the X Axis
     g
       .append('g')
       .attr('class', 'x-axis')
       .attr('transform', `translate(0,${h / 4 * 3 + 10})`)
       .call(d3.axisBottom(xScale).ticks(5));
+
   }
 }
 
@@ -180,11 +194,16 @@ function drawPieChart(data) {
     });
 
   // Labels
-  arcs
+  svg
+    .select('g.pie-chart')
+    .selectAll('text')
+    .data(pie(data))
+    .enter()
     .append('text')
     .attr('transform', d => `translate(${arc.centroid(d)})`)
     .attr('text-anchor', 'middle')
-    .text(d => d.data.estimate / totalPopNumber * 100);
+    .text(d => d.data.age)
+    .attr('fill', 'white');
 
   window.arc = arc;
   window.pie = pie;
@@ -542,6 +561,9 @@ function getSection(direction) {
 
 document.addEventListener('keyup', (e) => {
   if (e.keyCode == 32) {
-    sections[0][getSection('next')].scrollIntoView({ block: 'start', behavior: 'smooth' });
+    sections[0][getSection('next')].scrollIntoView({
+      block: 'start',
+      behavior: 'smooth'
+    });
   }
 });
