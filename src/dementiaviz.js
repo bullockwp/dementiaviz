@@ -536,6 +536,15 @@ function initWaypoints() {
     },
     offset: '20%',
   });
+
+  const dataSource = new Waypoint({
+    element: document.getElementById('data-source'),
+    handler() {
+      clearSVG();
+      window.counterIsInView = false;
+    },
+    offset: '20%',
+  });
 }
 
 const sections = d3.selectAll('.sections section');
