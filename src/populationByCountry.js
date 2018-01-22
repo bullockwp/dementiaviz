@@ -129,7 +129,7 @@ function drawBarPlot(data, transition = false) {
       .append('text')
       .text(d => d.age)
       .attr('x', padding + 10)
-      .attr('y', (d, i) => yScale(i) + (yScale.bandwidth() / 3 * 2))
+      .attr('y', (d, i) => yScale(i) + yScale.bandwidth() / 3 * 2)
       .attr('font-size', yScale.bandwidth() / 3)
       .attr('fill', 'white');
 
@@ -139,7 +139,6 @@ function drawBarPlot(data, transition = false) {
       .attr('class', 'x-axis')
       .attr('transform', `translate(0,${h / 4 * 3 + 10})`)
       .call(d3.axisBottom(xScale).ticks(5));
-
   }
 }
 
@@ -232,6 +231,19 @@ function arcTransition(data) {
     .attrTween('d', arcTween);
 }
 
+function selectRegion(region) {
+  const yearList = [2015, 2030];
+  const ageGroups = ['0-14', '15-64', '65+'];
+
+  const selectedYears = _.filter(
+    window.populationEstimates,
+    o => o.area === region && yearList.indexOf(o.year) > -1, // return only years in the list
+  );
+
+  window.estimates2015 = getEstimates(selectedYears, ageGroups, 2015);
+  window.estimates2030 = getEstimates(selectedYears, ageGroups, 2030);
+}
+
 d3
   .queue()
   .defer(
@@ -239,55 +251,35 @@ d3
     'https://na399.github.io/dementiaviz/data/csv/population-estimates.csv',
     rowConverter,
   )
-  // .defer(d3.csv, 'dataByDistrict.csv')
-  .await((error, populationEstimates) => {
+  .defer(d3.csv, 'https://na399.github.io/dementiaviz/data/csv/region-list.csv')
+  .await((error, populationEstimates, regionList) => {
     if (error) throw error;
 
-    const yearList = [2015, 2030];
-    const ageGroups = ['0-14', '15-64', '65+'];
+    window.populationEstimates = populationEstimates;
 
-    const selectedYears = _.filter(
-      populationEstimates,
-      o => o.area === 'WORLD' && yearList.indexOf(o.year) > -1, // return only years in the list
-    );
+    selectRegion('WORLD');
 
-    window.estimates2015 = getEstimates(selectedYears, ageGroups, 2015);
-    window.estimates2030 = getEstimates(selectedYears, ageGroups, 2030);
+    // The following code is modified from http://bl.ocks.org/jfreels/6734823
+    const select = d3
+      .select('#region-dropdown')
+      .append('select')
+      .attr('class', 'select')
+      .on('change', onchange);
 
-    // drawBarPlot(estimates2015);
+    const options = select
+      .selectAll('option')
+      .data(regionList)
+      .enter()
+      .append('option')
+      .text(d => d.region);
 
-    // let numClicks = 0;
-
-    // d3.selectAll('rect').on('click', () => {
-    //   if (numClicks % 2 === 0) {
-    //     drawBarPlot(estimates2030, (transition = true));
-    //   } else {
-    //     drawBarPlot(estimates2015, (transition = true));
-    //   }
-    //   numClicks += 1;
-    // });
-
-    // returns = drawPieChart(estimates2015);
-    // arc = returns[0];
-    // pie = returns[1];
-    // arcs = returns[2];
-
-    // let numClicksPie = 0;
-
-    // arcTransition(arc, pie, arcs, estimates2015);
-
-    // d3.selectAll('path.arc').on('click', () => {
-    //   console.log('clicked');
-    //   if (numClicksPie % 2 === 0) {
-    //     arcTransition(arc, pie, arcs, estimates2030);
-    //   } else {
-    //     arcTransition(arc, pie, arcs, estimates2015);
-    //   }
-    //   numClicksPie += 1;
-    // });
+    function onchange() {
+      const selectedValue = d3.select('select').property('value');
+      selectRegion(selectedValue);
+    }
   });
 
-initWaypoints();
+
 
 function clearSVG() {
   d3
@@ -322,34 +314,6 @@ function addImg(img) {
     .attr('height', '60%');
 }
 
-let newPatient = 0;
-let t;
-
-function counter() {
-  newPatient += 1;
-  setTimeout(counter, 3000);
-}
-
-counter();
-
-function addCounter() {
-  if (window.counterIsInView) {
-    const svg = d3.select('#plot-area').select('svg');
-
-    const w = parseInt(svg.style('width'), 10);
-    const h = parseInt(svg.style('height'), 10);
-
-    svg.selectAll('*').remove();
-
-    svg
-      .append('g')
-      .attr('transform', `translate(${w / 2},${h / 2})`)
-      .html(`<text style="font-size: 120px; text-align: center; fill: ${purple}">${newPatient}</text>`);
-
-    setTimeout(addCounter, 1000);
-  }
-}
-
 // Waypoints
 function initWaypoints() {
   const cover = new Waypoint({
@@ -361,26 +325,6 @@ function initWaypoints() {
       // addText(text);
     },
     offset: '-1%',
-  });
-
-  const quote1 = new Waypoint({
-    element: document.getElementById('quote1'),
-    handler() {
-      clearSVG();
-      const img = ['img/dr-chan-circle.jpg'];
-      addImg(img);
-    },
-    offset: '20%',
-  });
-
-  const quote2 = new Waypoint({
-    element: document.getElementById('quote2'),
-    handler() {
-      clearSVG();
-      const img = ['img/dr-butler-circle.jpg'];
-      addImg(img);
-    },
-    offset: '20%',
   });
 
   const populationBar1 = new Waypoint({
@@ -436,116 +380,9 @@ function initWaypoints() {
     },
     offset: '20%',
   });
-
-  const diseaseBar1 = new Waypoint({
-    element: document.getElementById('disease-bar1'),
-    handler() {
-      clearSVG();
-      diseasePlot.drawDiseasePlot();
-    },
-    offset: '20%',
-  });
-
-  const diseaseBar2 = new Waypoint({
-    element: document.getElementById('disease-bar2'),
-    handler() {
-      diseasePlot.updateData2005();
-    },
-    offset: '20%',
-  });
-
-  const diseaseBar3 = new Waypoint({
-    element: document.getElementById('disease-bar3'),
-    handler() {
-      diseasePlot.updateData2010();
-    },
-    offset: '20%',
-  });
-
-  const diseaseBar4 = new Waypoint({
-    element: document.getElementById('disease-bar4'),
-    handler(direction) {
-      if (direction === 'down') {
-        diseasePlot.updateData2015();
-      } else {
-        clearSVG();
-        diseasePlot.drawDiseasePlot();
-        diseasePlot.updateData2015();
-      }
-    },
-    offset: '20%',
-  });
-
-  const rateLine1 = new Waypoint({
-    element: document.getElementById('rate-line1'),
-    handler(direction) {
-      if (direction === 'down') {
-        clearSVG();
-        diseasePlot.drawRatePlot();
-      }
-    },
-    offset: '20%',
-  });
-
-  let isUpdatedOne = false;
-
-  const rateLine2 = new Waypoint({
-    element: document.getElementById('rate-line2'),
-    handler(direction) {
-      if (direction === 'down' && !isUpdatedOne) {
-        diseasePlot.updateOne();
-        isUpdatedOne = true;
-      }
-    },
-    offset: '20%',
-  });
-
-  const rateLine4 = new Waypoint({
-    element: document.getElementById('rate-line4'),
-    handler(direction) {
-      if (direction === 'down') {
-        diseasePlot.updateThree();
-      }
-    },
-    offset: '20%',
-  });
-
-  const rateLine5 = new Waypoint({
-    element: document.getElementById('rate-line5'),
-    handler(direction) {
-      if (direction === 'down') {
-        diseasePlot.updateFour();
-      } else {
-        window.counterIsInView = false;
-        clearSVG();
-        diseasePlot.drawRatePlot();
-        diseasePlot.updateOne();
-        diseasePlot.updateThree();
-        diseasePlot.updateFour();
-      }
-    },
-    offset: '20%',
-  });
-
-  const counter = new Waypoint({
-    element: document.getElementById('counter'),
-    handler() {
-      clearSVG();
-      window.counterIsInView = true;
-      addCounter();
-    },
-    offset: '20%',
-  });
-
-  const dataSource = new Waypoint({
-    element: document.getElementById('data-source'),
-    handler() {
-      clearSVG();
-      window.counterIsInView = false;
-    },
-    offset: '20%',
-  });
 }
+
+initWaypoints();
 
 const sections = d3.selectAll('.sections section');
 const sectionPos = [];
@@ -572,7 +409,7 @@ document.addEventListener('keyup', (e) => {
   if (e.keyCode == 32) {
     sections[0][getSection('next')].scrollIntoView({
       block: 'start',
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   }
 });

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>DementiaViz: Interactive visualisation of Dementia Prevalence</title>
+
+    <link rel="stylesheet" href="dementiaviz.css">
+    <link href="https://fonts.googleapis.com/css?family=Prompt:200,400" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="plot-area"></div>
+    
+    <div class="sections">
+        <section class="sections-expanded" id="cover" style="padding-top: 10%">
+            <h1>DementiaViz</h1>
+            <br>
+            <h2>Please select a region</h2>
+            <div class="content  interactive-content">
+                    <div id="region-dropdown"></div>
+            </div>
+        </section>
+        <section id="population-bar1">
+            <h2>Population estimates</h2>
+            <br>
+            <h1>2015</h1>
+            <!-- <div class="content">
+                <span style="font-size: 25px">The elderly represented a small proportion.</span>
+            </div> -->
+        </section>
+        <section id="population-bar2">
+            <br>
+            <h1>2030</h1>
+            <!-- <div class="content">
+                <span style="font-size: 25px">The number of people with age 65+ will nearly double in 15 years.</span>
+            </div> -->
+        </section>
+        <section id="population-pie1">
+            <h2>Ageing population in some countries</h2>
+            <br>
+            <h1>2015</h1>
+            <!-- <div class="content">
+                <span style="font-size: 25px">We had 8.3% of the population as elderly people.</span>
+            </div> -->
+        </section>
+        <section id="population-pie2">
+            <br>
+            <h1>2030</h1>
+            <!-- <div class="content">
+                <span style="font-size: 25px">This number will rise to 13.5% in the short future.
+                    <br>
+                    <br> Some countries will experience more significant increases than others.</span>
+            </div> -->
+        </section>
+    </div>
+    <div id="popup">
+    </div>
+
+    <script src="vendor/js/d3.min.js"></script>
+    <!-- <script src="node_modules/d3-queue/build/d3-queue.min.js"></script>
+    <script src="node_modules/leaflet/dist/leaflet.js"></script>
+    <script src="vendor/tile.stamen.js"></script>
+    <script src="node_modules/topojson/build/topojson.min.js"></script> -->
+    <script src="vendor/js/lodash.min.js"></script>
+    <script src="vendor/js/waypoint.min.js"></script>
+    <!-- <script src="vendor/js/jquery.min.js"></script> -->
+
+    <script src="src/populationByCountry.js"></script>
+    <!-- <script src="src/barplot.js"></script>
+    <script src="src/lineplot.js"></script> -->
+
+    <!-- <script src="src/population.js"></script> -->
+
+    <script type="text/javascript">
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        }
+
+        window.heap = window.heap || [], heap.load = function (e, t) {
+            window.heap.appid = e, window.heap.config = t = t || {};
+            var r = t.forceSSL || "https:" === document.location.protocol,
+                a = document.createElement("script");
+            a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") +
+                "//cdn.heapanalytics.com/js/heap-" + e + ".js";
+            var n = document.getElementsByTagName("script")[0];
+            n.parentNode.insertBefore(a, n);
+            for (var o = function (e) {
+                    return function () {
+                        heap.push([e].concat(Array.prototype.slice.call(arguments, 0)))
+                    }
+                }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify",
+                    "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"
+                ], c = 0; c < p.length; c++) heap[p[c]] = o(p[c])
+        };
+        heap.load("1034503799");
+    </script>
+</body>
+
+</html>
