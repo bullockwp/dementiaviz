@@ -160,7 +160,7 @@
         .attr('class', 'y label')
         .attr('y', -35)
         .attr('x', height / -2)
-        .text('Rate of Increase')
+        .text('Rate of death compared to year 2000')
         .attr("font-family", "sans-serif")
         .attr("font-size", "18px")
         .attr('text-anchor', 'end')
